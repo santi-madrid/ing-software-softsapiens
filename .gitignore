@@ -1,0 +1,23 @@
+# Ignorar ejecutables en bin, pero no archivos .gdextension
+/bin/*
+!/bin/*.gdextension
+
+# Ignorar objetos y binarios generales
+*.o
+*.os
+*.a
+*.so
+*.exe
+*.dll
+*.out
+
+# Ignorar archivos temporales o intermedios
+/build/
+*.import/
+*.translation/
+*.converted/
+
+# Ignorar archivos de SCons
+.sconsign.dblite
+/.sconsign.dblite
+
