@@ -11,7 +11,6 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
-
 	GDREGISTER_RUNTIME_CLASS(CharacterView);
 	GDREGISTER_RUNTIME_CLASS(BulletView);
 }

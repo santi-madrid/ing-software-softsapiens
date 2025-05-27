@@ -129,7 +129,7 @@ scale = Vector2(0.953125, 0.890625)
 texture = ExtResource("4_272bh")
 
 [node name="CharacterView" type="CharacterView" parent="."]
-speed = 215.8
+speed = 250.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterView"]
 position = Vector2(17.5, 31)
