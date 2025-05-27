@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwrkkalu5egdj"]
+
+[ext_resource type="Script" uid="uid://cxh3pt0bf1kti" path="res://Main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://wpg2tmklmewu" path="res://Legacy Collection/Legacy Collection/Assets/Environments/Rocky Beach environment/layers/tiles-example.png" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://crgus2okm0gop" path="res://Legacy Collection/Legacy Collection/Assets/Characters/Ghost-Files/Sprites/Appear/frame6.png" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://swlk6p7siwhd" path="res://Legacy Collection/Legacy Collection/Assets/Environments/parallax_forest_pack web/v1/layers/parallax-forest-back-trees.png" id="5_lquwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+resource_local_to_scene = true
+size = Vector2(1250, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(556, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(289, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0xm2m")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(576, 536)
+shape = SubResource("RectangleShape2D_0xm2m")
+one_way_collision = true
+debug_color = Color(0, 0.630801, 0.468808, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(561, 331)
+scale = Vector2(2.64648, 3.05804)
+texture = ExtResource("2_h2yge")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+z_index = 10
+position = Vector2(590, 323)
+scale = Vector2(5.22059, 5.03125)
+texture = ExtResource("5_lquwl")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(463, 315)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(118.5, 401.5)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="CharacterView" type="CharacterView" parent="."]
+speed = 215.8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterView"]
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterView/CollisionShape2D"]
+texture = ExtResource("5_7mycd")
