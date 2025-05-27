@@ -136,5 +136,6 @@ position = Vector2(17.5, 31)
 shape = SubResource("RectangleShape2D_272bh")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterView/CollisionShape2D"]
-position = Vector2(-4.5, -11.5)
+position = Vector2(2, -11.5)
+scale = Vector2(0.898438, 0.835938)
 texture = ExtResource("5_5vw27")

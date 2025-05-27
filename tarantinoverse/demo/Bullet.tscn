@@ -1,19 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://clw3lys7dpjqt"]
+[gd_scene load_steps=3 format=3 uid="uid://clw3lys7dpjqt"]
 
-[ext_resource type="Script" uid="uid://uvp8iws66uan" path="res://area_2d.gd" id="1_4s4u5"]
-[ext_resource type="Texture2D" uid="uid://c8hs1fyl76dij" path="res://Tiles Sprites/rock.png" id="2_4s4u5"]
+[ext_resource type="Texture2D" uid="uid://cicfgl44jbr0" path="res://Tiles Sprites/brick_brown.png" id="1_ayd6b"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsakb"]
-size = Vector2(29, 4)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s4u5"]
+size = Vector2(20, 6)
 
-[node name="Area2D" type="Area2D"]
-script = ExtResource("1_4s4u5")
+[node name="BulletView" type="BulletView"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, 1)
-shape = SubResource("RectangleShape2D_nsakb")
+shape = SubResource("RectangleShape2D_4s4u5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, -3)
-scale = Vector2(0.30249, 0.241699)
-texture = ExtResource("2_4s4u5")
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+scale = Vector2(0.75, 0.359375)
+texture = ExtResource("1_ayd6b")
