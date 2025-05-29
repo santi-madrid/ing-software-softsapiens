@@ -1,7 +1,7 @@
 #include "CharacterModel.h"
 
 CharacterModel::CharacterModel() {
-    speed = 0.0;
+    speed = 250.0;
 }
 
 void CharacterModel::set_speed(float p_speed) {

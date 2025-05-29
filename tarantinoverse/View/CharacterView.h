@@ -3,6 +3,7 @@
 
 #include <godot_cpp/classes/sprite2d.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
+#include <godot_cpp/classes/camera2d.hpp>
 #include "Presenter/CharacterPresenter.h"
 
 namespace godot {
@@ -20,6 +21,9 @@ private:
 	float gravity = 600.0f;
 	float jump_speed = -450.0f;
 	//bool is_on_floor = true;
+	double last_camera_x = 0.0f;
+	godot::Camera2D* camera = nullptr;
+
 
 protected:
 	static void _bind_methods();

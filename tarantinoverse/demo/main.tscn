@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=16 format=3 uid="uid://dwrkkalu5egdj"]
 
 [ext_resource type="Script" uid="uid://cxh3pt0bf1kti" path="res://Main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://2kr32w12l1si" path="res://Background Sprites/frentecine.png" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://7kb0epdu3iaj" path="res://Tiles Sprites/block_empty.png" id="4_272bh"]
+[ext_resource type="Texture2D" uid="uid://3ym0qa1y5k6b" path="res://Background Sprites/background_solid_dirt.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://biu6t1yqgupt" path="res://Characters Sprites/hans-landa.png" id="5_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 resource_local_to_scene = true
-size = Vector2(1250, 20)
+size = Vector2(2680, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(556, 33)
@@ -66,6 +66,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(38, 149)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
 
@@ -74,17 +77,23 @@ z_index = -11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 z_index = 11
-position = Vector2(576, 536)
+position = Vector2(902, 543)
 shape = SubResource("RectangleShape2D_0xm2m")
 one_way_collision = true
 debug_color = Color(0, 0.630801, 0.468808, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(-433, 528)
+scale = Vector2(10.4023, 0.867188)
+texture = ExtResource("5_7mycd")
+centered = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
 z_index = 10
-position = Vector2(565.448, 298.625)
-scale = Vector2(0.765041, 0.703857)
+position = Vector2(579, 330)
+scale = Vector2(0.753255, 0.629883)
 texture = ExtResource("3_lquwl")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -94,49 +103,9 @@ position = Vector2(463, 315)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(-247.5, 9.5)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(-186, 11)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(-127, 10)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(-67, 8)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D5" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(-2.00003, 8)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D6" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(60, 5)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D7" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(121, 3)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D8" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(180, 4)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D9" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(246, 4)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
+position = Vector2(1.5, -2.00002)
+scale = Vector2(2.16797, 0.132812)
+texture = ExtResource("5_7mycd")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
@@ -145,32 +114,11 @@ position = Vector2(118.5, 401.5)
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3/CollisionShape2D"]
-position = Vector2(-115.5, 6.5)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D3/CollisionShape2D"]
-position = Vector2(-51.5, 5.5)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D3/CollisionShape2D"]
-position = Vector2(13.5, 8.5)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D3/CollisionShape2D"]
-position = Vector2(73.5, 6.5)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
-
-[node name="Sprite2D5" type="Sprite2D" parent="StaticBody2D3/CollisionShape2D"]
-position = Vector2(130.5, 3.5)
-scale = Vector2(0.953125, 0.890625)
-texture = ExtResource("4_272bh")
+position = Vector2(1.33514e-05, -2.5)
+scale = Vector2(1.13672, 0.140625)
+texture = ExtResource("5_7mycd")
 
 [node name="CharacterView" type="CharacterView" parent="."]
-speed = 250.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterView"]
 position = Vector2(17.5, 31)
@@ -181,3 +129,21 @@ position = Vector2(13, 34)
 scale = Vector2(0.107422, 0.0878906)
 sprite_frames = SubResource("SpriteFrames_4c57u")
 animation = &"idle"
+
+[node name="Camera2D" type="Camera2D" parent="CharacterView"]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.3
+drag_right_margin = 0.0
+editor_draw_limits = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2221, 453.5)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(2.00001, -9.5)
+scale = Vector2(0.171875, 0.669922)
+texture = ExtResource("5_7mycd")

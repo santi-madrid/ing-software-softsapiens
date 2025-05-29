@@ -10,6 +10,9 @@
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/packed_scene.hpp>
 #include <godot_cpp/classes/node2d.hpp>
+#include <godot_cpp/classes/camera2d.hpp>
+#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/core/class_db.hpp>
 #include "Presenter/CharacterPresenter.h"
 
 
@@ -32,18 +35,11 @@ void CharacterView::_bind_methods() {
 }
 
 CharacterView::CharacterView() {
-	// Initialize any variables here.
 	time_passed = 0.0;
 	time_emit = 0.0;
 	amplitude = 10.0;
 	speed = presenter.get_speed();
 
-    // Crear y agregar CollisionShape2D
-    CollisionShape2D *collision_shape = memnew(CollisionShape2D);
-    Ref<RectangleShape2D> shape = memnew(RectangleShape2D);
-    shape->set_size(Vector2(32, 32)); // Tamaño del cuerpo del personaje
-    collision_shape->set_shape(shape);
-    add_child(collision_shape);
 }
 
 CharacterView::~CharacterView() {
@@ -55,25 +51,15 @@ void CharacterView::_physics_process(double p_delta) {
 	Vector2 velocity = get_velocity();
 	velocity.y += gravity * p_delta;
 
-	AnimatedSprite2D* sprite = Object::cast_to<AnimatedSprite2D>(get_node<AnimatedSprite2D>("AnimatedSprite2D"));
-	//sprite->set_flip_h(true);
-	if (velocity.x != 0) {
-        // Si se está moviendo, reproducí "walk"
-		if (!sprite->is_playing() || sprite->get_animation() != String("walk")) {
-			sprite->play("walk");
-		}
-
-        // Si va hacia la izquierda, reflejamos el sprite
-        sprite->set_flip_h(velocity.x > 0);
-    } else {
-        // Si no se mueve, reproducí "idle"
-		if (!sprite->is_playing() || sprite->get_animation() != StringName("idle")) {
-			sprite->play("idle");
-		}
+	if (!camera) {
+        if (has_node("Camera2D")) {
+            camera = get_node<Camera2D>("Camera2D");
+			camera->make_current(); // Activamos la cámara desde C++
+            last_camera_x = get_global_position().x;
+        }
     }
-	// Movimiento horizontal con teclas (opcional)
-	velocity.x = 0;
 
+	velocity.x = 0;
 	float current_speed = presenter.get_speed();
 
 	if (input->is_action_pressed("ui_right")) {
@@ -83,26 +69,37 @@ void CharacterView::_physics_process(double p_delta) {
 		velocity.x -= current_speed;
 	}
 
-	// Salto
 	if (is_on_floor() && input->is_action_just_pressed("ui_up")) {
 		velocity.y = jump_speed;
 	}
 
+	AnimatedSprite2D* sprite = Object::cast_to<AnimatedSprite2D>(get_node<AnimatedSprite2D>("AnimatedSprite2D"));
+	if (velocity.x != 0) {
+		if (!sprite->is_playing() || sprite->get_animation() != String("walk")) {
+			sprite->play("walk");
+		}
+        sprite->set_flip_h(velocity.x > 0);
+    } else {
+		if (!sprite->is_playing() || sprite->get_animation() != StringName("idle")) {
+			sprite->play("idle");
+		}
+    }
+
 	if (input->is_action_just_pressed("ui_select")) { // Space por defecto en Godot
     Ref<PackedScene> bullet_scene = ResourceLoader::get_singleton()->load("res://Bullet.tscn");
 
-    if (bullet_scene.is_valid()) {
-        Node2D *bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
+		if (bullet_scene.is_valid()) {
+			Node2D *bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
 
-        if (bullet_instance) {
-            // Posicionamos la bala en la posición del personaje
-            bullet_instance->set_position(get_position());
+			if (bullet_instance) {
+				// Posicionamos la bala en la posición del personaje
+				bullet_instance->set_position(get_position());
 
-            // Agregamos al árbol de nodos
-            get_parent()->add_child(bullet_instance);
-        }
-    }
-}
+				// Agregamos al árbol de nodos
+				get_parent()->add_child(bullet_instance);
+			}
+		}
+	}
 
 	set_velocity(velocity);
 	move_and_slide();
