@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=15 format=3 uid="uid://dwrkkalu5egdj"]
 
 [ext_resource type="Script" uid="uid://cxh3pt0bf1kti" path="res://Main.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://dgqggh8h5bkwj" path="res://Tiles Sprites/bridge.png" id="2_lquwl"]
-[ext_resource type="Texture2D" uid="uid://b840t6avaqtat" path="res://Background Sprites/background_color_hills.png" id="3_7mycd"]
+[ext_resource type="Texture2D" uid="uid://2kr32w12l1si" path="res://Background Sprites/frentecine.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://7kb0epdu3iaj" path="res://Tiles Sprites/block_empty.png" id="4_272bh"]
-[ext_resource type="Texture2D" uid="uid://dqyyrvmo450dj" path="res://Characters Sprites/character_green_front.png" id="5_5vw27"]
+[ext_resource type="Texture2D" uid="uid://biu6t1yqgupt" path="res://Characters Sprites/hans-landa.png" id="5_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 resource_local_to_scene = true
@@ -19,6 +18,54 @@ size = Vector2(289, 35)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 size = Vector2(55, 82)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(0, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(1024, 1024, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4c57u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lquwl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mycd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_272bh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vw27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kek77")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
 
@@ -32,19 +79,13 @@ shape = SubResource("RectangleShape2D_0xm2m")
 one_way_collision = true
 debug_color = Color(0, 0.630801, 0.468808, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D"]
-z_index = 13
-position = Vector2(-17.5001, 41)
-scale = Vector2(20.7656, 1.6875)
-texture = ExtResource("2_lquwl")
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
 z_index = 10
-position = Vector2(526, 298)
-scale = Vector2(5.22059, 5.03125)
-texture = ExtResource("3_7mycd")
+position = Vector2(565.448, 298.625)
+scale = Vector2(0.765041, 0.703857)
+texture = ExtResource("3_lquwl")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
@@ -135,7 +176,8 @@ speed = 250.0
 position = Vector2(17.5, 31)
 shape = SubResource("RectangleShape2D_272bh")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterView/CollisionShape2D"]
-position = Vector2(2, -11.5)
-scale = Vector2(0.898438, 0.835938)
-texture = ExtResource("5_5vw27")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterView"]
+position = Vector2(13, 34)
+scale = Vector2(0.107422, 0.0878906)
+sprite_frames = SubResource("SpriteFrames_4c57u")
+animation = &"idle"

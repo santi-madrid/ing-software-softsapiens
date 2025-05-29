@@ -4,6 +4,7 @@
 #include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/sprite2d.hpp>
+#include <godot_cpp/classes/animated_sprite2d.hpp>
 #include <godot_cpp/classes/collision_shape2d.hpp>
 #include <godot_cpp/classes/rectangle_shape2d.hpp>
 #include <godot_cpp/classes/resource_loader.hpp>
@@ -54,6 +55,22 @@ void CharacterView::_physics_process(double p_delta) {
 	Vector2 velocity = get_velocity();
 	velocity.y += gravity * p_delta;
 
+	AnimatedSprite2D* sprite = Object::cast_to<AnimatedSprite2D>(get_node<AnimatedSprite2D>("AnimatedSprite2D"));
+	//sprite->set_flip_h(true);
+	if (velocity.x != 0) {
+        // Si se está moviendo, reproducí "walk"
+		if (!sprite->is_playing() || sprite->get_animation() != String("walk")) {
+			sprite->play("walk");
+		}
+
+        // Si va hacia la izquierda, reflejamos el sprite
+        sprite->set_flip_h(velocity.x > 0);
+    } else {
+        // Si no se mueve, reproducí "idle"
+		if (!sprite->is_playing() || sprite->get_animation() != StringName("idle")) {
+			sprite->play("idle");
+		}
+    }
 	// Movimiento horizontal con teclas (opcional)
 	velocity.x = 0;
 
