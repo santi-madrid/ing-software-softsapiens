@@ -3,13 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://cicfgl44jbr0" path="res://Tiles Sprites/brick_brown.png" id="1_ayd6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s4u5"]
-size = Vector2(20, 6)
+size = Vector2(19, 6)
 
 [node name="BulletView" type="BulletView"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_4s4u5")
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Hitbox/CollisionShape2D"]
 scale = Vector2(0.75, 0.359375)
 texture = ExtResource("1_ayd6b")

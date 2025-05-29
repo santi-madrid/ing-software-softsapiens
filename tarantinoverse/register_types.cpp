@@ -1,6 +1,7 @@
 #include "register_types.h"
 #include "View/CharacterView.h"
 #include "View/BulletView.h"
+#include "View/EnemyView.h"
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
@@ -13,6 +14,7 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	}
 	GDREGISTER_RUNTIME_CLASS(CharacterView);
 	GDREGISTER_RUNTIME_CLASS(BulletView);
+	GDREGISTER_RUNTIME_CLASS(EnemyView);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {

@@ -1,9 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=18 format=3 uid="uid://dwrkkalu5egdj"]
 
-[ext_resource type="Script" uid="uid://cxh3pt0bf1kti" path="res://Main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://2kr32w12l1si" path="res://Background Sprites/frentecine.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://3ym0qa1y5k6b" path="res://Background Sprites/background_solid_dirt.png" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dttkk2b6c56cc" path="res://Characters Sprites/tank.png" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://biu6t1yqgupt" path="res://Characters Sprites/hans-landa.png" id="5_lquwl"]
+
+[sub_resource type="GDScript" id="GDScript_1bvp3"]
+script/source = "extends Node
+
+func _on_Sprite2D_position_changed(node, new_pos):
+	print(\"The position of \" + node.get_class() + \" is now \" + str(new_pos))
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 resource_local_to_scene = true
@@ -69,8 +76,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
 size = Vector2(38, 149)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+size = Vector2(141.5, 82.5)
+
 [node name="Main" type="Node"]
-script = ExtResource("1_0xm2m")
+script = SubResource("GDScript_1bvp3")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 z_index = -11
@@ -147,3 +157,14 @@ shape = SubResource("RectangleShape2D_5vw27")
 position = Vector2(2.00001, -9.5)
 scale = Vector2(0.171875, 0.669922)
 texture = ExtResource("5_7mycd")
+
+[node name="EnemyView" type="EnemyView" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyView"]
+position = Vector2(661.75, 256.25)
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyView"]
+position = Vector2(669, 230)
+scale = Vector2(0.196, 0.181)
+texture = ExtResource("5_272bh")
