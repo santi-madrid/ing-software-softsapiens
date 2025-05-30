@@ -7,6 +7,7 @@ using namespace godot;
 
 BulletView::BulletView() {
     presenter = nullptr;
+    damage_power = 25; // Valor por defecto, puede ser modificado según sea necesario
 }
 
 BulletView::~BulletView() {
@@ -37,8 +38,11 @@ void BulletView::_process(double delta) {
 void BulletView::_on_body_entered(Node* body) {
     EnemyView* enemy = Object::cast_to<EnemyView>(body);
     if (enemy) {
-        enemy->die();     // Matar al enemigo
-        queue_free();     // Destruir la bala
+        bool enemy_died = enemy->take_damage(damage_power); // Pasamos el daño de la bala **ERROR**
+        if (enemy_died) {
+            enemy->die(); // Solo llamamos a die() si la vida llegó a 0
+        }
+        queue_free(); // Destruir la bala de todas formas
     }
 }
 

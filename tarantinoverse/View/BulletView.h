@@ -11,6 +11,7 @@ class BulletView : public Node2D {
 
 private:
     BulletPresenter* presenter;
+    int damage_power = 25; // Default damage power, can be modified as needed
 
 public:
     BulletView();

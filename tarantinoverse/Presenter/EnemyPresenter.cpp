@@ -12,10 +12,10 @@ void EnemyPresenter::on_update(double delta) {
     view->update_position(pos);
 }
 
-void EnemyPresenter::take_damage(int amount) {
-    model.take_damage(amount);
-    view->play_damage_animation();
-    if (model.is_dead()) {
-        view->die();
-    }
+bool EnemyPresenter::take_damage(int amount) {
+    return model.take_damage(amount); // Devuelve true si el enemigo murió
+}
+
+int EnemyPresenter::get_health() const {
+    return model.get_health();
 }
