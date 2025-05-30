@@ -15,6 +15,7 @@ private:
     EnemyPresenter* presenter;
     int initial_health;
     float initial_speed;
+    double gravity = 600.0f; // Gravedad para el enemigo
 
 public:
     EnemyView();

@@ -78,7 +78,8 @@ void CharacterView::_physics_process(double p_delta) {
 		if (!sprite->is_playing() || sprite->get_animation() != String("walk")) {
 			sprite->play("walk");
 		}
-        sprite->set_flip_h(velocity.x > 0);
+
+        sprite->set_flip_h(velocity.x < 0);
     } else {
 		if (!sprite->is_playing() || sprite->get_animation() != StringName("idle")) {
 			sprite->play("idle");

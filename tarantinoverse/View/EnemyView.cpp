@@ -16,6 +16,11 @@ void EnemyView::_physics_process(double delta) {
     if (presenter) {
         presenter->on_update(delta);
     }
+    Vector2 velocity = get_velocity();
+	velocity.y += gravity * delta;
+
+    set_velocity(velocity);
+	move_and_slide();
 }
 
 void EnemyView::play_damage_animation() {
