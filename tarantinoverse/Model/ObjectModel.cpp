@@ -3,8 +3,8 @@
 
 using namespace godot;
 
-ObjectModel::ObjectModel(Vector2 start_pos, ObjectType obj_type, int val, float life)
-    : position(start_pos), type(obj_type), value(val), collected(false), lifetime(life) {}
+ObjectModel::ObjectModel(Vector2 start_pos, ObjectType obj_type, int val)
+    : position(start_pos), type(obj_type), value(val), collected(false) {}
 
 void ObjectModel::collect() {
     collected = true;
@@ -24,8 +24,4 @@ int ObjectModel::get_value() const {
 
 Vector2 ObjectModel::get_position() const {
     return position;
-}
-
-bool ObjectModel::expired(float elapsed_time) const {
-    return elapsed_time >= lifetime;
 }
