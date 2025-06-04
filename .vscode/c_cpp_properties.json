@@ -5,7 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/tarantinoverse",
-                "${workspaceFolder}/tarantinoverse/godot-cpp/include"
+                "${workspaceFolder}/tarantinoverse/godot-cpp/include",
+                "${workspaceFolder}/tarantinoverse/godot-cpp/gen/include",
+                "${workspaceFolder}/tarantinoverse/godot-cpp/gdextension"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
