@@ -20,7 +20,6 @@ private:
 	float velocity_y;
 	float gravity = 600.0f;
 	float jump_speed = -450.0f;
-	//bool is_on_floor = true;
 	double last_camera_x = 0.0f;
 	godot::Camera2D* camera = nullptr;
 
@@ -34,10 +33,10 @@ public:
 
 	void _physics_process(double delta) override;
 
-	void set_amplitude(const double p_amplitude);
+	void set_amplitude(const double amplitude);
 	double get_amplitude() const;
 
-	void set_speed(const double p_speed);
+	void set_speed(const double speed);
 	double get_speed() const;
 
 };

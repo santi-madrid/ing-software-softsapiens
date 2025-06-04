@@ -34,3 +34,13 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      - name: Compile godot-cpp
+        run: |
+          cd tarantinoverse
+          cd godot-cpp
+          scons
+          cd ..
+          scons
+          echo Project compiled!
+	  
