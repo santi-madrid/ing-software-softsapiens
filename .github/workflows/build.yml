@@ -37,6 +37,7 @@ jobs:
           
       - name: Compile godot-cpp
         run: |
+          python -m pip install scons
           cd tarantinoverse
           cd godot-cpp
           scons
