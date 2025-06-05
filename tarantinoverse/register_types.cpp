@@ -16,7 +16,7 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_RUNTIME_CLASS(CharacterView);
 	GDREGISTER_RUNTIME_CLASS(BulletView);
 	GDREGISTER_RUNTIME_CLASS(EnemyView);
-	GDREGISTER_RUNTIME_CLASS(ObjectView);
+	GDREGISTER_CLASS(ObjectView);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {

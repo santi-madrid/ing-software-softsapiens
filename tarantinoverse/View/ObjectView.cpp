@@ -1,15 +1,18 @@
+// ObjectView.cpp
 #include "ObjectView.h"
 #include "View/CharacterView.h"
 
 #include <godot_cpp/classes/area2d.hpp>
-#include <godot_cpp/classes/node.hpp>
-#include <godot_cpp/variant/callable.hpp>
+#include <godot_cpp/classes/sprite2d.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
 #include <godot_cpp/core/class_db.hpp>
 
 using namespace godot;
 
 ObjectView::ObjectView() {
     presenter = nullptr;
+    object_type = static_cast<int>(ObjectType::COIN); // por defecto
 }
 
 ObjectView::~ObjectView() {
@@ -17,13 +20,45 @@ ObjectView::~ObjectView() {
         delete presenter;
 }
 
+void ObjectView::set_object_type(int type) {
+    object_type = type;
+}
+
+int ObjectView::get_object_type() const {
+    return object_type;
+}
+
 void ObjectView::_ready() {
-    // Suponemos que estos datos pueden ser definidos por export variables o setters en GDScript
     Vector2 start_pos = get_position();
-    ObjectType type = ObjectType::COIN; // Cambiar esto si usás export o parsing
+    ObjectType type = static_cast<ObjectType>(object_type);
     int value = 1;
 
     presenter = new ObjectPresenter(start_pos, type, value);
+
+    Sprite2D* sprite = get_node<Sprite2D>("Sprite");
+    if (sprite) {
+        Ref<Texture2D> texture;
+
+        switch (type) {
+            case ObjectType::COIN:
+                texture = ResourceLoader::get_singleton()->load("res://assets/coin.png");
+                break;
+            case ObjectType::HEALTH:
+                texture = ResourceLoader::get_singleton()->load("res://assets/health.png");
+                break;
+            case ObjectType::POWERUP:
+                texture = ResourceLoader::get_singleton()->load("res://assets/powerup.png");
+                break;
+            default:
+                break;
+        }
+
+        if (texture.is_valid()) {
+            sprite->set_texture(texture);
+        } else {
+            UtilityFunctions::printerr("No se pudo cargar textura para tipo de objeto");
+        }
+    }
 
     Area2D* hitbox = get_node<Area2D>("Hitbox");
     if (hitbox) {
@@ -41,14 +76,19 @@ void ObjectView::_process(double delta) {
 }
 
 void ObjectView::_on_body_entered(Node* body) {
-    // Acá podés verificar si el body es un jugador, por ejemplo
     CharacterView* player = Object::cast_to<CharacterView>(body);
     if (player) {
         presenter->collect();
         // player->add_score(presenter->get_value()); // Ejemplo de interacción
     }
 }
-#include <godot_cpp/classes/node.hpp>
+
 void ObjectView::_bind_methods() {
     ClassDB::bind_method(D_METHOD("_on_body_entered", "body"), &ObjectView::_on_body_entered);
+
+    ClassDB::bind_method(D_METHOD("set_object_type", "type"), &ObjectView::set_object_type);
+    ClassDB::bind_method(D_METHOD("get_object_type"), &ObjectView::get_object_type);
+
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "object_type", PROPERTY_HINT_ENUM, "Coin,Health,PowerUp"),
+                 "set_object_type", "get_object_type");
 }
