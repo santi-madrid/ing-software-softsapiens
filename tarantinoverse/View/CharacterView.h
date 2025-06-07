@@ -41,12 +41,8 @@ public:
 	void set_speed(const double speed);
 	double get_speed() const;
 
-	bool take_damage(int amount) {
-		if (presenter) {
-			return presenter->take_damage(amount);
-		}
-		return false;
-	}
+	bool take_damage(int amount);
+
 	void set_presenter(CharacterPresenter* p);
 
 	void die();

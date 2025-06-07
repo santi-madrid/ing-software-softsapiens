@@ -37,7 +37,7 @@ void CharacterView::_bind_methods() {
 }
 
 CharacterView::CharacterView()
-	: presenter(nullptr), 
+	: presenter(nullptr),
       initial_health(100), 
       initial_speed(100.0f),
       time_passed(0.0),
@@ -45,7 +45,10 @@ CharacterView::CharacterView()
       amplitude(10.0),
       speed(100.0) // Set a default speed instead of using presenter
 {
-    // Constructor body can remain empty or handle other initialization
+    if (!presenter) {
+        presenter = new CharacterPresenter(this, initial_health, initial_speed);
+        UtilityFunctions::print("Presenter created");
+    }// Constructor body can remain empty or handle other initialization
 }
 
 CharacterView::~CharacterView() {
@@ -111,9 +114,7 @@ void CharacterView::_physics_process(double p_delta) {
 
     set_velocity(velocity);
     move_and_slide();
-
-
-}
+}	
 
 void CharacterView::set_amplitude(const double p_amplitude) {
 	amplitude = p_amplitude;
@@ -145,6 +146,17 @@ void CharacterView::set_presenter(CharacterPresenter* p) {
 		initial_health = presenter->get_health();
 		initial_speed = presenter->get_speed();
 	}
+}
+
+bool CharacterView::take_damage(int amount) {
+    UtilityFunctions::print("take_damage called with amount: ", amount);
+    if (!presenter) {
+        UtilityFunctions::print("ERROR: Presenter is null!");
+        return false;
+    }
+    bool result = presenter->take_damage(amount);
+    UtilityFunctions::print("take_damage result: ", result);
+    return result;
 }
 
 void CharacterView::die() {

@@ -6,6 +6,7 @@ class CharacterView;
 
 CharacterPresenter::CharacterPresenter(godot::CharacterView *v, int hp, float speed)
     : model(hp, speed), view(v) {
+    view->set_presenter(this);
 }
 
 CharacterPresenter::~CharacterPresenter() {
