@@ -36,6 +36,11 @@ void BulletView::_process(double delta) {
 }
 
 void BulletView::_on_body_entered(Node* body) {
+    // Si el cuerpo golpeado es el mismo que disparó la bala, ignorarlo
+    if (body == shooter) {
+        return;
+    }
+
     EnemyView* enemy = Object::cast_to<EnemyView>(body);
     if (enemy) {
         bool enemy_died = enemy->take_damage(damage_power); // Pasamos el daño de la bala **ERROR**

@@ -13,6 +13,8 @@ private:
     BulletPresenter* presenter;
     int damage_power = 25; // Default damage power, can be modified as needed
     int direction = 1; // 1 for right, -1 for left
+    Node* shooter = nullptr;  // El nodo que disparó esta bala
+
 public:
     BulletView();
     ~BulletView();
@@ -22,5 +24,7 @@ public:
     void _on_body_entered(Node* body);
     void set_direction(int dir) { direction = dir; } // Setter for direction
     int get_direction() const { return direction; }
+    void set_shooter(Node* node) { shooter = node; }
+    Node* get_shooter() const { return shooter; }
     static void _bind_methods();
 };

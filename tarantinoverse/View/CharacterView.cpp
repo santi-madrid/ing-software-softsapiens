@@ -1,4 +1,5 @@
 #include "CharacterView.h"
+#include "BulletView.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/input.hpp>
 #include <godot_cpp/classes/input_event.hpp>
@@ -101,11 +102,18 @@ void CharacterView::_physics_process(double p_delta) {
     if (input->is_action_just_pressed("ui_select")) {
         Ref<PackedScene> bullet_scene = ResourceLoader::get_singleton()->load("res://Bullet.tscn");
         if (bullet_scene.is_valid()) {
-            Node2D *bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
+            Node2D* bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
             if (bullet_instance) {
                 AnimatedSprite2D* sprite = Object::cast_to<AnimatedSprite2D>(get_node<AnimatedSprite2D>("AnimatedSprite2D"));
-                int dir = sprite->is_flipped_h() ? -1 : 1; // Determinar la dirección del disparo
-                bullet_instance->set("direction", dir); // Asignar la dirección al modelo de bala
+                int dir = sprite->is_flipped_h() ? -1 : 1;
+                
+                // Asignar el shooter (this) a la bala
+                BulletView* bullet = Object::cast_to<BulletView>(bullet_instance);
+                if (bullet) {
+                    bullet->set_shooter(this);
+                }
+                
+                bullet_instance->set("direction", dir);
                 bullet_instance->set_position(get_position());
                 get_parent()->add_child(bullet_instance);
             }

@@ -154,20 +154,19 @@ texture = ExtResource("4_272bh")
 
 [node name="CharacterView" type="CharacterView" parent="."]
 speed = 257.7
-position = Vector2(1, 0)
+position = Vector2(-84, 38)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterView"]
-position = Vector2(-41, 12)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_272bh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterView"]
-position = Vector2(-37, 12)
-scale = Vector2(0.107422, 0.0878906)
+position = Vector2(-3, 2)
+scale = Vector2(0.100586, 0.0917969)
 sprite_frames = SubResource("SpriteFrames_4c57u")
 animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterView"]
-position = Vector2(2, -13)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.3
