@@ -12,17 +12,25 @@ class EnemyView : public CharacterBody2D {
     GDCLASS(EnemyView, CharacterBody2D);
 
 private:
-    EnemyPresenter* presenter = nullptr;
+    EnemyPresenter* presenter;
+    int initial_health;
+    float initial_speed;
+    double gravity = 600.0f; // Gravedad para el enemigo
+    float shoot_timer = 0.0f;
+    float shoot_interval = 1.0f; // tiempo entre disparos en segundos
+    int bullets_to_shoot = 3;
+    int bullets_shot = 0;
 
 public:
+    EnemyView();
     void _ready() override;
     void _physics_process(double delta) override;
-
+    void play_damage_animation();
+    bool take_damage(int amount);
+    void die();
     void set_presenter(EnemyPresenter* p) { presenter = p; }
     void update_position(Vector2 new_pos) { set_position(new_pos); }
-    void play_damage_animation();
-    void die();
 
 protected:
-    static void _bind_methods(); 
+    static void _bind_methods();
 };

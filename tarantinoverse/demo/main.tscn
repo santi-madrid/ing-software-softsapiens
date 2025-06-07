@@ -1,9 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=21 format=3 uid="uid://dwrkkalu5egdj"]
 
+[ext_resource type="Texture2D" uid="uid://4kw0lidoq828" path="res://Background Sprites/background_solid_sand.png" id="1_272bh"]
+[ext_resource type="Texture2D" uid="uid://dsqq0amlv0vqq" path="res://Characters Sprites/aldo_1.png" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://dy3i7dpungau1" path="res://Tiles Sprites/bricks_flame/sprite_brickflame2.png" id="3_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bsnf2usthyky6" path="res://Tiles Sprites/bricks_flame/sprite_brickflame0.png" id="3_272bh"]
 [ext_resource type="Texture2D" uid="uid://2kr32w12l1si" path="res://Background Sprites/frentecine.png" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://3ym0qa1y5k6b" path="res://Background Sprites/background_solid_dirt.png" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dvbwt7jktarv5" path="res://Tiles Sprites/bricks_flame/sprite_brickflame1.png" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://dttkk2b6c56cc" path="res://Characters Sprites/tank.png" id="5_272bh"]
-[ext_resource type="Texture2D" uid="uid://biu6t1yqgupt" path="res://Characters Sprites/hans-landa.png" id="5_lquwl"]
 
 [sub_resource type="GDScript" id="GDScript_1bvp3"]
 script/source = "extends Node
@@ -17,7 +20,7 @@ resource_local_to_scene = true
 size = Vector2(2680, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(556, 33)
+size = Vector2(749, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(289, 35)
@@ -26,23 +29,23 @@ size = Vector2(289, 35)
 size = Vector2(55, 82)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
-atlas = ExtResource("5_lquwl")
+atlas = ExtResource("3_1bvp3")
 region = Rect2(0, 0, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
-atlas = ExtResource("5_lquwl")
+atlas = ExtResource("3_1bvp3")
 region = Rect2(0, 0, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
-atlas = ExtResource("5_lquwl")
+atlas = ExtResource("3_1bvp3")
 region = Rect2(1024, 0, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
-atlas = ExtResource("5_lquwl")
+atlas = ExtResource("3_1bvp3")
 region = Rect2(0, 1024, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
-atlas = ExtResource("5_lquwl")
+atlas = ExtResource("3_1bvp3")
 region = Rect2(1024, 1024, 1024, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4c57u"]
@@ -74,7 +77,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(38, 149)
+size = Vector2(38, 527)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(141.5, 82.5)
@@ -93,29 +96,45 @@ one_way_collision = true
 debug_color = Color(0, 0.630801, 0.468808, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
-position = Vector2(-433, 528)
-scale = Vector2(10.4023, 0.867188)
-texture = ExtResource("5_7mycd")
+position = Vector2(-431, 528)
+scale = Vector2(10.4375, 0.480469)
+texture = ExtResource("1_272bh")
 centered = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
 z_index = 10
-position = Vector2(579, 330)
+position = Vector2(577, 322)
 scale = Vector2(0.753255, 0.629883)
 texture = ExtResource("3_lquwl")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(463, 315)
+position = Vector2(664.5, 320)
 shape = SubResource("RectangleShape2D_lquwl")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(1.5, -2.00002)
-scale = Vector2(2.16797, 0.132812)
-texture = ExtResource("5_7mycd")
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(597.578, 354.786)
+scale = Vector2(0.210205, 0.147942)
+texture = ExtResource("3_272bh")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(959.5, 355)
+scale = Vector2(0.196533, 0.149414)
+texture = ExtResource("4_272bh")
+
+[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(395.5, 354)
+scale = Vector2(0.243217, 0.142361)
+texture = ExtResource("3_7mycd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D2"]
+z_index = 11
+position = Vector2(780.5, 355)
+scale = Vector2(0.196533, 0.149414)
+texture = ExtResource("3_272bh")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
@@ -124,19 +143,26 @@ position = Vector2(118.5, 401.5)
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3/CollisionShape2D"]
-position = Vector2(1.33514e-05, -2.5)
-scale = Vector2(1.13672, 0.140625)
-texture = ExtResource("5_7mycd")
+position = Vector2(-67.5, 44.5)
+scale = Vector2(0.160807, 0.16569)
+texture = ExtResource("3_7mycd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D3/CollisionShape2D"]
+position = Vector2(79.5, 44.5)
+scale = Vector2(0.166233, 0.163628)
+texture = ExtResource("4_272bh")
 
 [node name="CharacterView" type="CharacterView" parent="."]
+speed = 257.7
+position = Vector2(-84, 38)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterView"]
-position = Vector2(17.5, 31)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_272bh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterView"]
-position = Vector2(13, 34)
-scale = Vector2(0.107422, 0.0878906)
+position = Vector2(-3, 2)
+scale = Vector2(0.100586, 0.0917969)
 sprite_frames = SubResource("SpriteFrames_4c57u")
 animation = &"idle"
 
@@ -148,23 +174,44 @@ drag_right_margin = 0.0
 editor_draw_limits = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(8, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2221, 453.5)
+position = Vector2(2221, 264.5)
 shape = SubResource("RectangleShape2D_5vw27")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2(2.00001, -9.5)
-scale = Vector2(0.171875, 0.669922)
-texture = ExtResource("5_7mycd")
-
 [node name="EnemyView" type="EnemyView" parent="."]
+position = Vector2(829, 215)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyView"]
-position = Vector2(661.75, 256.25)
+position = Vector2(93, 17)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyView"]
-position = Vector2(669, 230)
+position = Vector2(104, 6)
+scale = Vector2(0.196, 0.181)
+texture = ExtResource("5_272bh")
+
+[node name="EnemyView3" type="EnemyView" parent="."]
+position = Vector2(1230, 290)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyView3"]
+position = Vector2(78, 10)
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyView3"]
+position = Vector2(68, -6.99997)
+scale = Vector2(0.196, 0.181)
+texture = ExtResource("5_272bh")
+
+[node name="EnemyView2" type="EnemyView" parent="."]
+position = Vector2(1913, 452)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyView2"]
+position = Vector2(3, 31)
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyView2"]
+position = Vector2(7, 20)
 scale = Vector2(0.196, 0.181)
 texture = ExtResource("5_272bh")

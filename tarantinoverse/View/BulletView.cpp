@@ -1,12 +1,14 @@
 // View/bullet_view.cpp
 #include "BulletView.h"
 #include "View/EnemyView.h"
+#include "View/CharacterView.h"
 #include <godot_cpp/classes/area2d.hpp>
 
 using namespace godot;
 
 BulletView::BulletView() {
     presenter = nullptr;
+    damage_power = 25; // Valor por defecto, puede ser modificado según sea necesario
 }
 
 BulletView::~BulletView() {
@@ -15,7 +17,7 @@ BulletView::~BulletView() {
 }
 
 void BulletView::_ready() {
-    presenter = new BulletPresenter(get_position());
+    //presenter = new BulletPresenter(get_position(), direction);
     Area2D* hitbox = get_node<Area2D>("Hitbox");
     if (hitbox) {
         hitbox->connect("body_entered", Callable(this, "_on_body_entered"));
@@ -24,8 +26,7 @@ void BulletView::_ready() {
 
 void BulletView::_process(double delta) {
     if (!presenter)
-        return;
-
+         presenter = new BulletPresenter(get_position(), direction);
     presenter->update(delta);
     set_position(presenter->get_position());
 
@@ -35,13 +36,33 @@ void BulletView::_process(double delta) {
 }
 
 void BulletView::_on_body_entered(Node* body) {
+    // Si el cuerpo golpeado es el mismo que disparó la bala, ignorarlo
+    if (body == shooter) {
+        return;
+    }
+
     EnemyView* enemy = Object::cast_to<EnemyView>(body);
     if (enemy) {
-        enemy->die();     // Matar al enemigo
-        queue_free();     // Destruir la bala
+        bool enemy_died = enemy->take_damage(damage_power); // Pasamos el daño de la bala **ERROR**
+        if (enemy_died) {
+            enemy->die(); // Solo llamamos a die() si la vida llegó a 0
+        }
+        queue_free(); // Destruir la bala de todas formas
+    }
+    CharacterView* character = Object::cast_to<CharacterView>(body);
+    if (character) {
+        bool character_died = character->take_damage(damage_power); // Pasamos el daño de la bala
+        if (character_died) {
+            character->die(); // Solo llamamos a die() si la vida llegó a 0
+        }
+        queue_free(); // Destruir la bala de todas formas
     }
 }
 
 void BulletView::_bind_methods() {
+    ClassDB::bind_method(D_METHOD("set_direction", "dir"), &BulletView::set_direction);
+    ClassDB::bind_method(D_METHOD("get_direction"), &BulletView::get_direction);
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "direction"), "set_direction", "get_direction");
+
     ClassDB::bind_method(D_METHOD("_on_body_entered", "body"), &BulletView::_on_body_entered);
 }

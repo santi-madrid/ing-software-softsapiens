@@ -7,8 +7,8 @@ private:
     BulletModel* model;
 
 public:
-    BulletPresenter(godot::Vector2 start_pos)
-        : model(new BulletModel(start_pos)) {}
+    BulletPresenter(godot::Vector2 start_pos, int dir = 1)
+        : model(new BulletModel(start_pos, dir)) {}
 
     ~BulletPresenter() { delete model; }
 
