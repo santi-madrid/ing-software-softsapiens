@@ -6,8 +6,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Agregar Google Test y Google Mock
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "/usr/lib/cmake/GTest")  # 🔹 Agrega la ruta de GMock
 find_package(GTest REQUIRED)
 find_package(GMock REQUIRED)
+
 include_directories(${GTEST_INCLUDE_DIRS} ${GMOCK_INCLUDE_DIRS})
 
 # Agregar directorios de código fuente
