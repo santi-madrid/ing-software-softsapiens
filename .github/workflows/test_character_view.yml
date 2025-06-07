@@ -18,6 +18,12 @@ jobs:
           sudo apt update
           sudo apt install -y cmake g++ libgtest-dev
 
+      - name: 🔽 Descargar Godot C++ bindings
+        run: |
+          git clone --depth=1 https://github.com/godotengine/godot-cpp.git
+          cd godot-cpp
+          scons platform=linux generate_bindings=yes -j$(nproc)
+
       - name: 🔨 Compilar Google Test
         run: |
           cd /usr/src/googletest
@@ -29,7 +35,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake ..  # ✅ Ahora busca en la raíz
+          cmake .. -DGODOT_CPP_PATH=../godot-cpp  # ✅ Especificar la ruta de los bindings
           make
 
       - name: 🚀 Ejecutar tests
