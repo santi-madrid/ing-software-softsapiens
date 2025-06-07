@@ -17,10 +17,10 @@ jobs:
         cd /usr/src/googletest
         sudo cmake .
         sudo make
-        sudo mv lib/libgtest*.a /usr/lib
-        sudo mv lib/libgtest_main.a /usr/lib
-        sudo mv lib/libgmock*.a /usr/lib
+        sudo mv lib/libgtest.a /usr/lib
+        sudo mv lib/libgmock.a /usr/lib
         sudo mv lib/libgmock_main.a /usr/lib
+        sudo mv lib/libgtest_main.a /usr/lib || true  # 🔹 Ignora error si el archivo no existe
 
     - name: Build tests
       run: |
