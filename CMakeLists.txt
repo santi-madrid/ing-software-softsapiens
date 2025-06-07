@@ -16,7 +16,7 @@ include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse/Presenter)
 include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse/View)
 
 # 🔹 Agregar la ruta de Godot C++ API
-include_directories(${CMAKE_SOURCE_DIR}/godot-cpp)
+include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse/godot-cpp)
 
 # Agregar los archivos de prueba
 add_executable(test_character_view tests/test_character_view.cpp)
