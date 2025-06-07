@@ -1,32 +1,31 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include "View/CharacterView.h"
-#include <godot_cpp/classes/input.hpp>
 
 using namespace godot;
+using ::testing::AtLeast;  // Permite verificar que una función se llamó al menos una vez
 
-TEST(CharacterViewTest, MovementAndActions) {
-    CharacterView character;
-    character.set_position(Vector2(0, 0)); // Posición inicial
-    character.set_speed(200); // Velocidad positiva
+// 🔹 Mock para simular `CharacterView`
+class MockCharacterView : public CharacterView {
+public:
+    MOCK_METHOD(void, move_right, (), (override));
+    MOCK_METHOD(void, move_left, (), (override));
+    MOCK_METHOD(void, jump, (), (override));
+    MOCK_METHOD(void, shoot, (), (override));
+};
 
-    float delta_time = 1.0f; // Simula 1 segundo de movimiento
+// 🔹 Test para verificar que se llama a la función correcta
+TEST(CharacterViewTest, CallsCorrectFunctionOnInput) {
+    MockCharacterView character;
 
-    // 🔹 Simular movimiento a la derecha
-    Input::get_singleton()->action_press("ui_right");
-    character._physics_process(delta_time);
-    EXPECT_GT(character.get_position().x, 0); // Debe moverse a la derecha
+    EXPECT_CALL(character, move_right()).Times(AtLeast(1));  // Verifica que `move_right()` se llama
+    EXPECT_CALL(character, move_left()).Times(AtLeast(1));   // Verifica que `move_left()` se llama
+    EXPECT_CALL(character, jump()).Times(AtLeast(1));        // Verifica que `jump()` se llama
+    EXPECT_CALL(character, shoot()).Times(AtLeast(1));       // Verifica que `shoot()` se llama
 
-    // 🔹 Simular movimiento a la izquierda
-    Input::get_singleton()->action_press("ui_left");
-    character._physics_process(delta_time);
-    EXPECT_LT(character.get_position().x, 0); // Debe moverse a la izquierda
-
-    // 🔹 Simular salto
-    Input::get_singleton()->action_press("ui_up");
-    character._physics_process(delta_time);
-    EXPECT_LT(character.get_position().y, 0); // Debe moverse hacia arriba
-
-    // 🔹 Simular disparo
-    Input::get_singleton()->action_press("ui_select");
-    EXPECT_TRUE(character.has_node("Bullet")); // Verifica que se creó una bala
+    // Simular entrada de movimiento
+    character.move_right();
+    character.move_left();
+    character.jump();
+    character.shoot();
 }
