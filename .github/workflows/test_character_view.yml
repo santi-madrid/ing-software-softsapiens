@@ -1,33 +1,38 @@
 name: Test CharacterView
 
-on: [push, pull_request]  # Ejecutar los tests en cada push o pull request
+on:
+  pull_request:
+    branches:
+      - develop
 
 jobs:
-  test_character_view:
-    runs-on: ubuntu-latest  # Usamos un entorno Linux en GitHub Actions
+  build-and-test:
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3  # Descarga el código del repositorio
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake make g++ libgtest-dev libgmock-dev
-        cd /usr/src/googletest
-        sudo cmake .
-        sudo make
-        sudo mv lib/libgtest.a /usr/lib
-        sudo mv lib/libgmock.a /usr/lib
-        sudo mv lib/libgmock_main.a /usr/lib
-        sudo mv lib/libgtest_main.a /usr/lib || true  # 🔹 Ignora error si el archivo no existe
+      - name: 🛠️ Instalar dependencias
+        run: |
+          sudo apt update
+          sudo apt install -y cmake g++ libgtest-dev
 
-    - name: Build tests
-      run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
+      - name: 🔨 Compilar Google Test
+        run: |
+          cd /usr/src/googletest
+          sudo cmake .
+          sudo make
+          sudo cp lib/*.a /usr/lib
 
-    - name: Run CharacterView tests
-      run: ./build/test_character_view  # Ejecuta el test
+      - name: 🏗️ Configurar y compilar el proyecto
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
+
+      - name: 🚀 Ejecutar tests
+        run: |
+          cd build
+          ./run_tests

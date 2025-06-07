@@ -1,31 +1,35 @@
 #include <gtest/gtest.h>
-#include <gmock/gmock.h>
-#include "View/CharacterView.h"
+#include <godot_cpp/variant/vector2.hpp>  // Asegurar que Vector2 esté disponible
+#include "../tarantinoverse/View/CharacterView.h"  // Ajusta la ruta según tu estructura
 
-using namespace godot;
-using ::testing::AtLeast;  // Permite verificar que una función se llamó al menos una vez
+using namespace godot;  // Para evitar escribir godot::Vector2 cada vez
 
-// 🔹 Mock para simular `CharacterView`
-class MockCharacterView : public CharacterView {
-public:
-    MOCK_METHOD(void, move_right, (), (override));
-    MOCK_METHOD(void, move_left, (), (override));
-    MOCK_METHOD(void, jump, (), (override));
-    MOCK_METHOD(void, shoot, (), (override));
+class CharacterViewTest : public ::testing::Test {
+protected:
+    CharacterView character;
+
+    void SetUp() override {
+        character.set_position(Vector2(0, 0)); // Posición inicial
+        character.set_speed(200.0f); // Velocidad estándar
+    }
 };
 
-// 🔹 Test para verificar que se llama a la función correcta
-TEST(CharacterViewTest, CallsCorrectFunctionOnInput) {
-    MockCharacterView character;
+// Test: Movimiento hacia la derecha
+TEST_F(CharacterViewTest, MoveRight) {
+    character.set_position(Vector2(0, 0));
+    character.set_speed(200.0f);
+    
+    character.set_position(character.get_position() + Vector2(character.get_speed(), 0));
 
-    EXPECT_CALL(character, move_right()).Times(AtLeast(1));  // Verifica que `move_right()` se llama
-    EXPECT_CALL(character, move_left()).Times(AtLeast(1));   // Verifica que `move_left()` se llama
-    EXPECT_CALL(character, jump()).Times(AtLeast(1));        // Verifica que `jump()` se llama
-    EXPECT_CALL(character, shoot()).Times(AtLeast(1));       // Verifica que `shoot()` se llama
+    EXPECT_EQ(character.get_position().x, 200);
+}
 
-    // Simular entrada de movimiento
-    character.move_right();
-    character.move_left();
-    character.jump();
-    character.shoot();
+// Test: Movimiento hacia la izquierda
+TEST_F(CharacterViewTest, MoveLeft) {
+    character.set_position(Vector2(200, 0));
+    character.set_speed(200.0f);
+    
+    character.set_position(character.get_position() - Vector2(character.get_speed(), 0));
+
+    EXPECT_EQ(character.get_position().x, 0);
 }

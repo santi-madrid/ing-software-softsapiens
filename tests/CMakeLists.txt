@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.10)
+project(CharacterViewTests)
+
+# Agregar Google Test
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+# Agregar Godot C++ bindings
+include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse)
+
+# Agregar archivos fuente
+add_executable(run_tests test_character_view.cpp)
+target_link_libraries(run_tests ${GTEST_LIBRARIES} pthread)
