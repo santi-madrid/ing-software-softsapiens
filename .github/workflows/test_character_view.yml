@@ -16,13 +16,13 @@ jobs:
       - name: 🛠️ Instalar dependencias
         run: |
           sudo apt update
-          sudo apt install -y cmake g++ libgtest-dev
+          sudo apt install -y cmake g++ libgtest-dev scons  # ✅ Instalar SCons
 
       - name: 🔽 Descargar Godot C++ bindings
         run: |
           git clone --depth=1 https://github.com/godotengine/godot-cpp.git
           cd godot-cpp
-          scons platform=linux generate_bindings=yes -j$(nproc)
+          scons platform=linux generate_bindings=yes -j$(nproc)  # ✅ Ahora SCons está instalado
 
       - name: 🔨 Compilar Google Test
         run: |
@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake .. -DGODOT_CPP_PATH=../godot-cpp  # ✅ Especificar la ruta de los bindings
+          cmake .. -DGODOT_CPP_PATH=../godot-cpp
           make
 
       - name: 🚀 Ejecutar tests
