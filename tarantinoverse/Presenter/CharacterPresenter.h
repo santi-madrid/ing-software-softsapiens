@@ -4,12 +4,15 @@
 
 class CharacterPresenter {
 public:
-    CharacterPresenter();
+    CharacterPresenter(CharacterView* v, int hp, float speed);
     ~CharacterPresenter();
 
+    bool take_damage(int amount);
+    int get_health() const;
     void set_speed(double p_speed);
     double get_speed() const;
 
 private:
-    CharacterModel* model;
+    CharacterModel model;
+    CharacterView* view;
 };

@@ -12,7 +12,9 @@ class CharacterView: public CharacterBody2D {
 	GDCLASS(CharacterView, CharacterBody2D);
 
 private:
-	CharacterPresenter presenter;
+	CharacterPresenter* presenter;
+	int initial_health;
+	float initial_speed;
 	double time_passed;
 	double time_emit;
 	double amplitude;
@@ -36,9 +38,14 @@ public:
 	void set_amplitude(const double amplitude);
 	double get_amplitude() const;
 
+	void set_presenter(CharacterPresenter* p);
+
 	void set_speed(const double speed);
 	double get_speed() const;
 
+	void set_presenter(CharacterPresenter* p) { presenter = p; }
+
+	void die();
 };
 
 }

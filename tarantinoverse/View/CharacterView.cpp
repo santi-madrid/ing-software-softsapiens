@@ -15,6 +15,8 @@
 #include <godot_cpp/core/class_db.hpp>
 #include "Presenter/CharacterPresenter.h"
 
+// Forward declaration
+class CharacterPresenter;
 
 using namespace godot;
 
@@ -34,12 +36,13 @@ void CharacterView::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("position_changed", PropertyInfo(Variant::OBJECT, "node"), PropertyInfo(Variant::VECTOR2, "new_pos")));
 }
 
-CharacterView::CharacterView() {
+CharacterView::CharacterView()
+	:presenter(nullptr), initial_health(100), initial_speed(100.0f) 
+{
 	time_passed = 0.0;
 	time_emit = 0.0;
 	amplitude = 10.0;
-	speed = presenter.get_speed();
-
+	speed = presenter->get_speed();
 }
 
 CharacterView::~CharacterView() {
@@ -60,7 +63,7 @@ void CharacterView::_physics_process(double p_delta) {
     }
 
 	velocity.x = 0;
-	float current_speed = presenter.get_speed();
+	float current_speed = presenter->get_speed();
 
 	if (input->is_action_pressed("ui_right")) {
 		velocity.x += current_speed;
@@ -116,10 +119,14 @@ double CharacterView::get_amplitude() const {
 }
 
 void CharacterView::set_speed(const double p_speed) {
-    presenter.set_speed(p_speed);  // Le pasa la velocidad al model
+    presenter->set_speed(p_speed);  // Le pasa la velocidad al model
 }
 
 double CharacterView::get_speed() const {
-    return presenter.get_speed();  // Lee la velocidad del model
+    return presenter->get_speed();  // Lee la velocidad del model
+}
+
+void CharacterView::die() {
+	queue_free();
 }
 

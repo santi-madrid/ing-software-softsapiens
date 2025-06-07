@@ -13,6 +13,7 @@ private:
 
 public:
     EnemyPresenter(EnemyView* v, int hp, float speed);
+
     void on_update(double delta);
     bool take_damage(int amount);
     int get_health() const;

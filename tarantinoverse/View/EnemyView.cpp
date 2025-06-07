@@ -1,5 +1,9 @@
 #include "EnemyView.h"
 #include "EnemyPresenter.h"
+#include <godot_cpp/classes/resource_loader.hpp>
+#include <godot_cpp/classes/packed_scene.hpp>
+#include <godot_cpp/classes/node2d.hpp>
+#include <godot_cpp/classes/node.hpp>
 
 EnemyView::EnemyView() 
     : presenter(nullptr), initial_health(100), initial_speed(100.0f) {}
@@ -13,6 +17,10 @@ void EnemyView::_ready() {
 }
 
 void EnemyView::_physics_process(double delta) {
+    shoot_timer += delta;
+    static float reset_timer = 0.0f;
+    reset_timer += delta;
+
     if (presenter) {
         presenter->on_update(delta);
     }
@@ -21,6 +29,34 @@ void EnemyView::_physics_process(double delta) {
 
     set_velocity(velocity);
 	move_and_slide();
+
+    while (bullets_shot >= bullets_to_shoot){
+        if(shoot_timer >= shoot_interval){
+            shoot_timer = 0.0f;
+
+            //Disparo
+            Ref<PackedScene> bullet_scene = ResourceLoader::get_singleton()->load("res://Bullet.tscn");
+
+            
+            if (bullet_scene.is_valid()) {
+                Node2D *bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
+
+                if (bullet_instance) {
+                    bullet_instance->set_position(get_position());
+                    get_parent()->add_child(bullet_instance);
+                }
+            } 
+
+        }
+        bullets_shot ++;
+    }
+    reset_timer += delta;
+
+    if (reset_timer >= 3.0f) {
+        bullets_shot = 0;
+        reset_timer = 0.0f;
+    }
+    
 }
 
 void EnemyView::play_damage_animation() {

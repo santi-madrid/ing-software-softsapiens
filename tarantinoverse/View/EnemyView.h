@@ -16,6 +16,10 @@ private:
     int initial_health;
     float initial_speed;
     double gravity = 600.0f; // Gravedad para el enemigo
+    float shoot_timer = 0.0f;
+    float shoot_interval = 1.0f; // tiempo entre disparos en segundos
+    int bullets_to_shoot = 3;
+    int bullets_shot = 0;
 
 public:
     EnemyView();
