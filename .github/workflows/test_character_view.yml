@@ -14,14 +14,13 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y cmake make g++ libgtest-dev libgmock-dev
-        cd /usr/src/gtest
+        cd /usr/src/googletest
         sudo cmake .
         sudo make
         sudo mv lib/libgtest*.a /usr/lib
-        cd /usr/src/gmock
-        sudo cmake .
-        sudo make
+        sudo mv lib/libgtest_main.a /usr/lib
         sudo mv lib/libgmock*.a /usr/lib
+        sudo mv lib/libgmock_main.a /usr/lib
 
     - name: Build tests
       run: |
