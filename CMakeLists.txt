@@ -10,10 +10,13 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 # Agregar directorios de código fuente
-include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse)  # 🔹 Agrega la carpeta tarantinoverse/
+include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse)
 include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse/Model)
 include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse/Presenter)
 include_directories(${CMAKE_SOURCE_DIR}/tarantinoverse/View)
+
+# 🔹 Agregar la ruta de Godot C++ API
+include_directories(${CMAKE_SOURCE_DIR}/godot-cpp)
 
 # Agregar los archivos de prueba
 add_executable(test_character_view tests/test_character_view.cpp)
