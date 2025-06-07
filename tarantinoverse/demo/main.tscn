@@ -157,16 +157,17 @@ speed = 257.7
 position = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterView"]
-position = Vector2(17.5, 31)
+position = Vector2(-41, 12)
 shape = SubResource("RectangleShape2D_272bh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterView"]
-position = Vector2(13, 34)
+position = Vector2(-37, 12)
 scale = Vector2(0.107422, 0.0878906)
 sprite_frames = SubResource("SpriteFrames_4c57u")
 animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterView"]
+position = Vector2(2, -13)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.3
@@ -174,20 +175,21 @@ drag_right_margin = 0.0
 editor_draw_limits = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(8, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(2221, 264.5)
 shape = SubResource("RectangleShape2D_5vw27")
 
 [node name="EnemyView" type="EnemyView" parent="."]
-position = Vector2(750, 229)
+position = Vector2(829, 215)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyView"]
-position = Vector2(-123, 22)
+position = Vector2(93, 17)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyView"]
-position = Vector2(-36, 14)
+position = Vector2(104, 6)
 scale = Vector2(0.196, 0.181)
 texture = ExtResource("5_272bh")
 
@@ -211,6 +213,6 @@ position = Vector2(3, 31)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyView2"]
-position = Vector2(6.10352e-05, 20)
+position = Vector2(7, 20)
 scale = Vector2(0.196, 0.181)
 texture = ExtResource("5_272bh")

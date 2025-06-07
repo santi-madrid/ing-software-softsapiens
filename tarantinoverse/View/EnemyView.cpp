@@ -4,6 +4,8 @@
 #include <godot_cpp/classes/packed_scene.hpp>
 #include <godot_cpp/classes/node2d.hpp>
 #include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/animated_sprite2d.hpp>
+#include <godot_cpp/classes/sprite2d.hpp>
 
 EnemyView::EnemyView() 
     : presenter(nullptr), initial_health(100), initial_speed(100.0f) {}
@@ -38,8 +40,10 @@ void EnemyView::_physics_process(double delta) {
             Ref<PackedScene> bullet_scene = ResourceLoader::get_singleton()->load("res://Bullet.tscn");
             if (bullet_scene.is_valid()) {
                 Node2D *bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
-
                 if (bullet_instance) {
+                    Sprite2D* sprite = Object::cast_to<Sprite2D>(get_node<Sprite2D>("Sprite2D"));
+                    int dir = sprite->is_flipped_h() ? 1 : -1; // Determinar la dirección del disparo
+                    bullet_instance->set("direction", dir); // Asignar la dirección al modelo de bala
                     bullet_instance->set_position(get_position());
                     get_parent()->add_child(bullet_instance);
                 }

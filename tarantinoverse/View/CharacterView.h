@@ -4,8 +4,7 @@
 #include <godot_cpp/classes/sprite2d.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/camera2d.hpp>
-
-class CharacterPresenter;
+#include "../Presenter/CharacterPresenter.h"
 
 namespace godot {
 
@@ -42,6 +41,12 @@ public:
 	void set_speed(const double speed);
 	double get_speed() const;
 
+	bool take_damage(int amount) {
+		if (presenter) {
+			return presenter->take_damage(amount);
+		}
+		return false;
+	}
 	void set_presenter(CharacterPresenter* p);
 
 	void die();

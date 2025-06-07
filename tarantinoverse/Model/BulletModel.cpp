@@ -3,10 +3,11 @@
 
 using namespace godot;
 
+
 void BulletModel::move(float delta) {
     float move_step = speed * delta * direction;
     position.x += move_step;
-    distance_traveled += std::abs(move_step);
+    distance_traveled += fabs(move_step);
 }
 
 bool BulletModel::should_destroy() const {

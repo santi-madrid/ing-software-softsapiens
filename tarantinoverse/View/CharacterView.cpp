@@ -101,7 +101,7 @@ void CharacterView::_physics_process(double p_delta) {
             Node2D *bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
             if (bullet_instance) {
                 AnimatedSprite2D* sprite = Object::cast_to<AnimatedSprite2D>(get_node<AnimatedSprite2D>("AnimatedSprite2D"));
-                int dir = sprite->is_flipped_h() ? 1 : -1; // Determinar la dirección del disparo
+                int dir = sprite->is_flipped_h() ? -1 : 1; // Determinar la dirección del disparo
                 bullet_instance->set("direction", dir); // Asignar la dirección al modelo de bala
                 bullet_instance->set_position(get_position());
                 get_parent()->add_child(bullet_instance);
