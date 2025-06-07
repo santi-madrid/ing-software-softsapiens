@@ -16,7 +16,7 @@ BulletView::~BulletView() {
 }
 
 void BulletView::_ready() {
-    presenter = new BulletPresenter(get_position());
+    //presenter = new BulletPresenter(get_position(), direction);
     Area2D* hitbox = get_node<Area2D>("Hitbox");
     if (hitbox) {
         hitbox->connect("body_entered", Callable(this, "_on_body_entered"));
@@ -25,7 +25,7 @@ void BulletView::_ready() {
 
 void BulletView::_process(double delta) {
     if (!presenter)
-        return;
+         presenter = new BulletPresenter(get_position(), direction);
 
     presenter->update(delta);
     set_position(presenter->get_position());
@@ -47,5 +47,9 @@ void BulletView::_on_body_entered(Node* body) {
 }
 
 void BulletView::_bind_methods() {
+        ClassDB::bind_method(D_METHOD("set_direction", "dir"), &BulletView::set_direction);
+    ClassDB::bind_method(D_METHOD("get_direction"), &BulletView::get_direction);
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "direction"), "set_direction", "get_direction");
+
     ClassDB::bind_method(D_METHOD("_on_body_entered", "body"), &BulletView::_on_body_entered);
 }

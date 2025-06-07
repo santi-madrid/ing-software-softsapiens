@@ -4,7 +4,7 @@
 
 class CharacterView;
 
-CharacterPresenter::CharacterPresenter(CharacterView *v, int hp, float speed)
+CharacterPresenter::CharacterPresenter(godot::CharacterView *v, int hp, float speed)
     : model(hp, speed), view(v) {
 }
 

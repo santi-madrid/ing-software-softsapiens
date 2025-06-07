@@ -4,7 +4,8 @@
 #include <godot_cpp/classes/sprite2d.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/camera2d.hpp>
-#include "Presenter/CharacterPresenter.h"
+
+class CharacterPresenter;
 
 namespace godot {
 
@@ -38,12 +39,10 @@ public:
 	void set_amplitude(const double amplitude);
 	double get_amplitude() const;
 
-	void set_presenter(CharacterPresenter* p);
-
 	void set_speed(const double speed);
 	double get_speed() const;
 
-	void set_presenter(CharacterPresenter* p) { presenter = p; }
+	void set_presenter(CharacterPresenter* p);
 
 	void die();
 };

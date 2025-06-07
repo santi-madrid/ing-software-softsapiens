@@ -30,14 +30,12 @@ void EnemyView::_physics_process(double delta) {
     set_velocity(velocity);
 	move_and_slide();
 
-    while (bullets_shot >= bullets_to_shoot){
+    
         if(shoot_timer >= shoot_interval){
             shoot_timer = 0.0f;
 
             //Disparo
             Ref<PackedScene> bullet_scene = ResourceLoader::get_singleton()->load("res://Bullet.tscn");
-
-            
             if (bullet_scene.is_valid()) {
                 Node2D *bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
 
@@ -46,17 +44,18 @@ void EnemyView::_physics_process(double delta) {
                     get_parent()->add_child(bullet_instance);
                 }
             } 
-
         }
-        bullets_shot ++;
-    }
+    bullets_shot ++;
+
     reset_timer += delta;
 
     if (reset_timer >= 3.0f) {
         bullets_shot = 0;
         reset_timer = 0.0f;
     }
-    
+
+    move_and_slide();
+
 }
 
 void EnemyView::play_damage_animation() {

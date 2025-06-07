@@ -1,10 +1,15 @@
 // Presenter/CharacterPresenter.h
 #pragma once
+
+namespace godot {
+    class CharacterView;
+}
+
 #include "Model/CharacterModel.h"
 
 class CharacterPresenter {
 public:
-    CharacterPresenter(CharacterView* v, int hp, float speed);
+    CharacterPresenter(godot::CharacterView* view, int hp, float speed);
     ~CharacterPresenter();
 
     bool take_damage(int amount);
@@ -14,5 +19,5 @@ public:
 
 private:
     CharacterModel model;
-    CharacterView* view;
+    godot::CharacterView* view;
 };
