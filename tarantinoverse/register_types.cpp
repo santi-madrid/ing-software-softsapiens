@@ -2,6 +2,7 @@
 #include "View/CharacterView.h"
 #include "View/BulletView.h"
 #include "View/EnemyView.h"
+#include "View/MainMenuView.h"
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
@@ -15,6 +16,7 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_RUNTIME_CLASS(CharacterView);
 	GDREGISTER_RUNTIME_CLASS(BulletView);
 	GDREGISTER_RUNTIME_CLASS(EnemyView);
+	GDREGISTER_RUNTIME_CLASS(MainMenuView);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {

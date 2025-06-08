@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://77ntg677kifg"]
+
+[node name="MainMenuView" type="MainMenuView"]
+anchors_preset = -1
+anchor_right = 0.078
+anchor_bottom = 0.207
+offset_right = -89.856
+offset_bottom = -134.136
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.75
+anchor_bottom = 3.4
+offset_right = -22.0
+offset_bottom = -316.6
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
