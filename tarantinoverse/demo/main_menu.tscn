@@ -1,32 +1,36 @@
-[gd_scene format=3 uid="uid://77ntg677kifg"]
+[gd_scene load_steps=2 format=3 uid="uid://77ntg677kifg"]
+
+[ext_resource type="Texture2D" uid="uid://dmxind4p6wwu7" path="res://UI/boton.png" id="1_06t4h"]
 
 [node name="MainMenuView" type="MainMenuView"]
 anchors_preset = -1
 anchor_right = 0.078
 anchor_bottom = 0.207
-offset_right = -89.856
-offset_bottom = -134.136
+offset_left = 500.0
+offset_top = 262.0
+offset_right = 410.144
+offset_bottom = 127.864
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.75
 anchor_bottom = 3.4
-offset_right = -22.0
-offset_bottom = -316.6
+offset_right = 128.0
+offset_bottom = 116.0
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Play"
+icon = ExtResource("1_06t4h")
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Options"
+icon = ExtResource("1_06t4h")
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Credits"
+icon = ExtResource("1_06t4h")
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+icon = ExtResource("1_06t4h")

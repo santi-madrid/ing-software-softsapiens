@@ -15,6 +15,7 @@
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include "Presenter/CharacterPresenter.h"
+#include <godot_cpp/classes/scene_tree.hpp>
 
 // Forward declaration
 class CharacterPresenter;
@@ -169,5 +170,6 @@ bool CharacterView::take_damage(int amount) {
 
 void CharacterView::die() {
 	queue_free();
+    get_tree()->change_scene_to_file("res://Main_Menu.tscn");
 }
 
