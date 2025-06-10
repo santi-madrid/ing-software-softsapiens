@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://77ntg677kifg"]
+[gd_scene load_steps=10 format=3 uid="uid://77ntg677kifg"]
 
 [ext_resource type="Texture2D" uid="uid://b28ta0qakfw8v" path="res://Background Sprites/fondo_trtvrs.png" id="1_06t4h"]
-[ext_resource type="Texture2D" uid="uid://pvljcd51vmb6" path="res://UI/button.png" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://cbgohptg7xfg0" path="res://UI/play_button.png" id="1_glbon"]
+[ext_resource type="Texture2D" uid="uid://dprk1ig5xao6h" path="res://UI/options_button.png" id="2_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://ddpx2bef15yt" path="res://UI/credits_button.png" id="3_qe12f"]
+[ext_resource type="Texture2D" uid="uid://cuoji0ilpkx6g" path="res://UI/quit_button.png" id="4_8qtwp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.980392, 0.784314, 0.0705882, 1)
@@ -51,10 +54,10 @@ offset_bottom = 97.864
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = -133.0
-offset_top = -97.0
-offset_right = 356.0
-offset_bottom = 285.0
+offset_left = -131.0
+offset_top = -114.0
+offset_right = 375.0
+offset_bottom = 326.0
 theme_override_constants/separation = 20
 alignment = 1
 
@@ -64,7 +67,7 @@ theme_override_colors/font_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_colors/font_focus_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_colors/font_pressed_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_styles/focus = SubResource("StyleBoxFlat_7vrkn")
-icon = ExtResource("1_7vrkn")
+icon = ExtResource("1_glbon")
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -72,7 +75,7 @@ theme_override_colors/font_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_colors/font_focus_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_colors/font_pressed_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_styles/focus = SubResource("StyleBoxFlat_fu7sn")
-icon = ExtResource("1_7vrkn")
+icon = ExtResource("2_nlkkf")
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -80,7 +83,7 @@ theme_override_colors/font_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_colors/font_focus_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_colors/font_pressed_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_styles/focus = SubResource("StyleBoxFlat_jix8l")
-icon = ExtResource("1_7vrkn")
+icon = ExtResource("3_qe12f")
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -88,7 +91,7 @@ theme_override_colors/font_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_colors/font_focus_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_colors/font_pressed_color = Color(0.980392, 0.784314, 0.0705882, 1)
 theme_override_styles/focus = SubResource("StyleBoxFlat_glbon")
-icon = ExtResource("1_7vrkn")
+icon = ExtResource("4_8qtwp")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

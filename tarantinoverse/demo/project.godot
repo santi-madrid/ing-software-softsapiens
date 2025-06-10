@@ -14,3 +14,10 @@ config/name="Nuevo Proyecto de Juego"
 run/main_scene="uid://77ntg677kifg"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[input]
+
+ui_scape={
+"deadzone": 0.2,
+"events": []
+}
