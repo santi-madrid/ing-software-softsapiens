@@ -30,3 +30,7 @@ void CharacterModel::set_speed(float p_speed) {
 float CharacterModel::get_speed() const {
     return speed;
 }
+
+int CharacterModel::get_max_health() const {
+    return 100; // O podés usar initial_health si preferís hacerlo variable
+}

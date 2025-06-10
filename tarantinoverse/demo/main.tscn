@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=23 format=3 uid="uid://dwrkkalu5egdj"]
 
 [ext_resource type="Texture2D" uid="uid://4kw0lidoq828" path="res://Background Sprites/background_solid_sand.png" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://dsqq0amlv0vqq" path="res://Characters Sprites/aldo_1.png" id="3_1bvp3"]
@@ -81,6 +81,10 @@ size = Vector2(38, 527)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(141.5, 82.5)
+
+[sub_resource type="CurveTexture" id="CurveTexture_272bh"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_5vw27"]
 
 [node name="Main" type="Node"]
 script = SubResource("GDScript_1bvp3")
@@ -215,3 +219,17 @@ shape = SubResource("RectangleShape2D_kek77")
 position = Vector2(7, 20)
 scale = Vector2(0.196, 0.181)
 texture = ExtResource("5_272bh")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI"]
+offset_left = 39.0
+offset_top = 41.0
+offset_right = 206.0
+offset_bottom = 51.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("CurveTexture_272bh")
+texture_progress = SubResource("AnimatedTexture_5vw27")
+tint_under = Color(0.934151, 0.394871, 0.176383, 1)
+tint_progress = Color(0.672755, 0.42981, 0, 1)

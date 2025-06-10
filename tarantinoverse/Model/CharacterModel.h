@@ -13,4 +13,6 @@ public:
     bool is_dead() const;
     float get_speed() const;
     void set_speed(float s);
+
+    int get_max_health() const;
 };

@@ -16,6 +16,7 @@ public:
     int get_health() const;
     void set_speed(double p_speed);
     double get_speed() const;
+    int get_max_health() const;
 
 private:
     CharacterModel model;

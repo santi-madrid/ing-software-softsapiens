@@ -15,7 +15,6 @@
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include "Presenter/CharacterPresenter.h"
-
 // Forward declaration
 class CharacterPresenter;
 
@@ -66,6 +65,16 @@ void CharacterView::_physics_process(double p_delta) {
             camera = get_node<Camera2D>("Camera2D");
             camera->make_current();
             last_camera_x = get_global_position().x;
+        }
+    }
+
+    if (!health_bar) {
+        if (has_node("/root/Main/UI/HealthBar")) { // Ajustá si tu jerarquía es distinta
+            health_bar = get_node<godot::TextureProgressBar>("/root/Main/UI/HealthBar");
+            if (health_bar && presenter) {
+                health_bar->set_max(presenter->get_max_health());
+                health_bar->set_value(presenter->get_health());
+            }
         }
     }
 
@@ -162,10 +171,29 @@ bool CharacterView::take_damage(int amount) {
         UtilityFunctions::print("ERROR: Presenter is null!");
         return false;
     }
+
     bool result = presenter->take_damage(amount);
+    
+    if (health_bar) {
+        int hp = presenter->get_health();
+        UtilityFunctions::print("Setting health bar to: ", hp);
+        health_bar->set_value(hp);
+    } else {
+        UtilityFunctions::print("health_bar is null!");
+    }
+
+    if (health_bar) {
+        health_bar->set_value(presenter->get_health());
+    }
+
+    if (result) { // Si el modelo devuelve true, está muerto
+        die();
+    }
+
     UtilityFunctions::print("take_damage result: ", result);
     return result;
 }
+
 
 void CharacterView::die() {
 	queue_free();
