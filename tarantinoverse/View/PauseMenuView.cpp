@@ -25,8 +25,7 @@ PauseMenuView::PauseMenuView()
 void PauseMenuView::_ready() {
     UtilityFunctions::print("PauseMenuView::_ready called");
 
-    set_visible(false); // Ocultamos el menú al iniciar
-    set_process(true);
+    set_process_mode(Node::PROCESS_MODE_WHEN_PAUSED);
 
     BaseMenuView::_ready();
 
@@ -49,16 +48,11 @@ void PauseMenuView::_ready() {
 }
 
 PauseMenuView::~PauseMenuView() {
-    // Add your cleanup here.
+    if(presenter)
+        delete presenter;
 }
 
 void PauseMenuView::_process(double delta) {
-    Input* input = Input::get_singleton();
-
-    if (input->is_action_just_pressed("ui_cancel")) { // ESC
-        toggle_pause();
-    }
-
     if (paused) {
         handle_navigation(delta);
     }
@@ -69,14 +63,15 @@ void PauseMenuView::toggle_pause() {
 
     if (paused) {
         UtilityFunctions::print("Game Paused");
-        set_visible(true);
         get_tree()->set_pause(true);
         grab_focus_at_index(current_index);
-    } else {
-        UtilityFunctions::print("Game Resumed");
-        set_visible(false);
-        get_tree()->set_pause(false);
     }
+}
+
+void PauseMenuView::resume_game() {
+    get_tree()->set_pause(false);
+    set_visible(false);
+    queue_free();
 }
 
 bool PauseMenuView::is_paused() const {
@@ -84,17 +79,19 @@ bool PauseMenuView::is_paused() const {
 }
 
 void PauseMenuView::_on_play_pressed() {
-    toggle_pause(); // Resume
+    resume_game(); // Resume
 }
 
-void PauseMenuView::_on_options_pressed() {
+void PauseMenuView::_on_options_pressed() { //aca da la opcion de mutear solo, ahora termina el juego
     UtilityFunctions::print("Options button pressed");
-    get_tree()->change_scene_to_file("res://scenes/OptionsMenu.tscn");
+    get_tree()->set_pause(false);
+    get_tree()->change_scene_to_file("res://options_menu.tscn");
 }
 
 void PauseMenuView::_on_quit_pressed() {
     UtilityFunctions::print("Quit button pressed");
-    get_tree()->change_scene_to_file("res://scenes/Main_Menu.tscn");
+    get_tree()->set_pause(false);
+    get_tree()->change_scene_to_file("res://main_menu.tscn");
 }
 
 void PauseMenuView::set_presenter(PauseMenuPresenter* p) {

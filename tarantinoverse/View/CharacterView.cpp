@@ -1,5 +1,6 @@
 #include "CharacterView.h"
 #include "BulletView.h"
+#include "PauseMenuView.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/input.hpp>
 #include <godot_cpp/classes/input_event.hpp>
@@ -77,6 +78,16 @@ void CharacterView::_physics_process(double p_delta) {
         current_speed = presenter->get_speed();
     }
 
+    if (input->is_action_just_pressed("ui_cancel")) {
+    Ref<PackedScene> pause_scene = ResourceLoader::get_singleton()->load("res://pause_menu.tscn");
+    if (pause_scene.is_valid()) {
+        Node *pause_instance = pause_scene->instantiate();
+        pause_instance->set_process_mode(Node::PROCESS_MODE_WHEN_PAUSED);
+        get_tree()->get_current_scene()->add_child(pause_instance);
+        get_tree()->call_deferred("set_pause", true);
+    }
+    }
+
     if (input->is_action_pressed("ui_right")) {
         velocity.x += current_speed;
     }
@@ -123,7 +134,8 @@ void CharacterView::_physics_process(double p_delta) {
 
     set_velocity(velocity);
     move_and_slide();
-}	
+
+}
 
 void CharacterView::set_amplitude(const double p_amplitude) {
 	amplitude = p_amplitude;

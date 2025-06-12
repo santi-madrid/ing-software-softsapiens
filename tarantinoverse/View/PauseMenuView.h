@@ -4,6 +4,8 @@
 #include "godot_cpp/classes/control.hpp"
 #include "godot_cpp/classes/button.hpp"
 #include "godot_cpp/core/class_db.hpp"
+#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/input_event.hpp>
 #include <vector>
 #include "../Presenter/PauseMenuPresenter.h"
 #include "../View/BaseMenuView.h"
@@ -26,6 +28,8 @@ public:
 
     void _process(double delta);
     void _ready();
+    
+    void resume_game();
     void toggle_pause();
     bool is_paused() const;
     void _on_play_pressed();
