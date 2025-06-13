@@ -33,7 +33,8 @@ void ObjectView::_ready() {
     ObjectType type = static_cast<ObjectType>(object_type);
     int value = 1;
 
-    presenter = new ObjectPresenter(start_pos, type, value);
+    //Crea un Object con Factory Method
+    presenter = ObjectPresenter::create(start_pos, type, value);
 
     Sprite2D* sprite = get_node<Sprite2D>("Sprite");
     if (sprite) {
@@ -41,13 +42,13 @@ void ObjectView::_ready() {
 
         switch (type) {
             case ObjectType::COIN:
-                texture = ResourceLoader::get_singleton()->load("res://assets/coin.png");
+                texture = ResourceLoader::get_singleton()->load("res://demo/ObjectSprites/coin-gold.png");
                 break;
             case ObjectType::HEALTH:
-                texture = ResourceLoader::get_singleton()->load("res://assets/health.png");
+                texture = ResourceLoader::get_singleton()->load("res://demo/ObjectSprites/heart.png");
                 break;
             case ObjectType::POWERUP:
-                texture = ResourceLoader::get_singleton()->load("res://assets/powerup.png");
+                texture = ResourceLoader::get_singleton()->load("rres://demo/ObjectSprites/jewel.png");
                 break;
             default:
                 break;

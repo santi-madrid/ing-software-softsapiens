@@ -12,6 +12,9 @@ public:
     ObjectPresenter(godot::Vector2 start_pos, ObjectType obj_type, int value);
     ~ObjectPresenter();
 
+    // Método Factory
+    static ObjectPresenter* create(godot::Vector2 start_pos, ObjectType obj_type, int value);
+
     void collect();
     bool is_collected() const;
     ObjectType get_type() const;
