@@ -1,11 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=19 format=3 uid="uid://dwrkkalu5egdj"]
 
 [ext_resource type="Texture2D" uid="uid://4kw0lidoq828" path="res://Background Sprites/background_solid_sand.png" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://dsqq0amlv0vqq" path="res://Characters Sprites/aldo_1.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dy3i7dpungau1" path="res://Tiles Sprites/bricks_flame/sprite_brickflame2.png" id="3_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bsnf2usthyky6" path="res://Tiles Sprites/bricks_flame/sprite_brickflame0.png" id="3_272bh"]
 [ext_resource type="Texture2D" uid="uid://2kr32w12l1si" path="res://Background Sprites/frentecine.png" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://dvbwt7jktarv5" path="res://Tiles Sprites/bricks_flame/sprite_brickflame1.png" id="4_272bh"]
+[ext_resource type="PackedScene" uid="uid://dgfui3fwnmi47" path="res://object.tscn" id="5_5vw27"]
+[ext_resource type="Texture2D" uid="uid://3ym0qa1y5k6b" path="res://Background Sprites/background_solid_dirt.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dttkk2b6c56cc" path="res://Characters Sprites/tank.png" id="5_272bh"]
 
 [sub_resource type="GDScript" id="GDScript_1bvp3"]
@@ -164,7 +165,7 @@ shape = SubResource("RectangleShape2D_272bh")
 position = Vector2(-3, 2)
 scale = Vector2(0.100586, 0.0917969)
 sprite_frames = SubResource("SpriteFrames_4c57u")
-animation = &"idle"
+animation = &"walk"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterView"]
 drag_horizontal_enabled = true
@@ -215,3 +216,22 @@ shape = SubResource("RectangleShape2D_kek77")
 position = Vector2(7, 20)
 scale = Vector2(0.196, 0.181)
 texture = ExtResource("5_272bh")
+
+[node name="ObjectView" parent="." instance=ExtResource("5_5vw27")]
+object_type = 0
+position = Vector2(520, 469)
+
+[node name="ObjectView2" parent="." instance=ExtResource("5_5vw27")]
+object_type = 0
+position = Vector2(581, 468)
+
+[node name="ObjectView3" parent="." instance=ExtResource("5_5vw27")]
+object_type = 0
+position = Vector2(513, 250)
+
+[node name="ObjectView4" parent="." instance=ExtResource("5_5vw27")]
+position = Vector2(281, 251)
+
+[node name="ObjectView5" parent="." instance=ExtResource("5_5vw27")]
+object_type = 2
+position = Vector2(97, 339)

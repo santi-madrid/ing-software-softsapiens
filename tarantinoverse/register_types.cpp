@@ -2,11 +2,15 @@
 #include "View/CharacterView.h"
 #include "View/BulletView.h"
 #include "View/EnemyView.h"
+<<<<<<< HEAD
 #include "View/MainMenuView.h"
 #include "View/BaseMenuView.h"
 #include "View/PauseMenuView.h"
 #include "View/OptionsMenuView.h"
 #include "View/CreditsMenuView.h"
+=======
+#include "View/ObjectView.h"
+>>>>>>> feature/recollection
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
@@ -20,11 +24,15 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_RUNTIME_CLASS(CharacterView);
 	GDREGISTER_RUNTIME_CLASS(BulletView);
 	GDREGISTER_RUNTIME_CLASS(EnemyView);
+<<<<<<< HEAD
 	GDREGISTER_RUNTIME_CLASS(BaseMenuView);
 	GDREGISTER_RUNTIME_CLASS(MainMenuView);
 	GDREGISTER_RUNTIME_CLASS(PauseMenuView);
 	GDREGISTER_RUNTIME_CLASS(OptionsMenuView);
 	GDREGISTER_RUNTIME_CLASS(CreditsMenuView);
+=======
+	GDREGISTER_CLASS(ObjectView);
+>>>>>>> feature/recollection
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {
