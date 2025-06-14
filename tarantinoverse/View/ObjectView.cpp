@@ -80,7 +80,7 @@ void ObjectView::_on_body_entered(Node* body) {
     CharacterView* character_view = Object::cast_to<CharacterView>(body);
     if (character_view && presenter) {
         // Se delega al Presenter del personaje qué hacer con el objeto recolectado
-        CharacterPresenter* character_presenter = character_presenter->get_presenter();
+        CharacterPresenter* character_presenter = character_view->get_presenter();
         if (character_presenter) {
             character_presenter->collect_object(
                 presenter->get_type(),
