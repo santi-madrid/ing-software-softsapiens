@@ -16,11 +16,8 @@
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include "Presenter/CharacterPresenter.h"
-<<<<<<< HEAD
-=======
 #include <godot_cpp/classes/scene_tree.hpp>
 
->>>>>>> develop
 // Forward declaration
 class CharacterPresenter;
 
