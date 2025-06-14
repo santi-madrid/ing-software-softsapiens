@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvvyupsns8sja"]
+
+[ext_resource type="Texture2D" uid="uid://dprk1ig5xao6h" path="res://UI/options_button.png" id="1_4gmlt"]
+[ext_resource type="Texture2D" uid="uid://b3bjkg3pubb2i" path="res://UI/back_button.png" id="2_ogda5"]
+[ext_resource type="Texture2D" uid="uid://b28ta0qakfw8v" path="res://Background Sprites/fondo_trtvrs.png" id="3_6bffs"]
+
+[node name="OptionsMenu" type="OptionsMenuView"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 198.0
+offset_right = 841.0
+offset_bottom = 487.0
+theme_override_constants/separation = 20
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("1_4gmlt")
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_ogda5")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(570, 324.5)
+scale = Vector2(1.05729, 1.06327)
+texture = ExtResource("3_6bffs")
