@@ -1,4 +1,5 @@
 #include "CharacterView.h"
+#include "BulletView.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/input.hpp>
 #include <godot_cpp/classes/input_event.hpp>
@@ -15,6 +16,8 @@
 #include <godot_cpp/core/class_db.hpp>
 #include "Presenter/CharacterPresenter.h"
 
+// Forward declaration
+class CharacterPresenter;
 
 using namespace godot;
 
@@ -34,12 +37,19 @@ void CharacterView::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("position_changed", PropertyInfo(Variant::OBJECT, "node"), PropertyInfo(Variant::VECTOR2, "new_pos")));
 }
 
-CharacterView::CharacterView() {
-	time_passed = 0.0;
-	time_emit = 0.0;
-	amplitude = 10.0;
-	speed = presenter.get_speed();
-
+CharacterView::CharacterView()
+	: presenter(nullptr),
+      initial_health(100), 
+      initial_speed(100.0f),
+      time_passed(0.0),
+      time_emit(0.0),
+      amplitude(10.0),
+      speed(100.0) // Set a default speed instead of using presenter
+{
+    if (!presenter) {
+        presenter = new CharacterPresenter(this, initial_health, initial_speed);
+        UtilityFunctions::print("Presenter created");
+    }// Constructor body can remain empty or handle other initialization
 }
 
 CharacterView::~CharacterView() {
@@ -47,64 +57,72 @@ CharacterView::~CharacterView() {
 }
 
 void CharacterView::_physics_process(double p_delta) {
-	Input* input = Input::get_singleton();
-	Vector2 velocity = get_velocity();
-	velocity.y += gravity * p_delta;
+    Input* input = Input::get_singleton();
+    Vector2 velocity = get_velocity();
+    velocity.y += gravity * p_delta;
 
-	if (!camera) {
+    if (!camera) {
         if (has_node("Camera2D")) {
             camera = get_node<Camera2D>("Camera2D");
-			camera->make_current(); // Activamos la cámara desde C++
+            camera->make_current();
             last_camera_x = get_global_position().x;
         }
     }
 
-	velocity.x = 0;
-	float current_speed = presenter.get_speed();
+    velocity.x = 0;
+    float current_speed = speed; // Valor por defecto
 
-	if (input->is_action_pressed("ui_right")) {
-		velocity.x += current_speed;
-	}
-	if (input->is_action_pressed("ui_left")) {
-		velocity.x -= current_speed;
-	}
-
-	if (is_on_floor() && input->is_action_just_pressed("ui_up")) {
-		velocity.y = jump_speed;
-	}
-
-	AnimatedSprite2D* sprite = Object::cast_to<AnimatedSprite2D>(get_node<AnimatedSprite2D>("AnimatedSprite2D"));
-	if (velocity.x != 0) {
-		if (!sprite->is_playing() || sprite->get_animation() != String("walk")) {
-			sprite->play("walk");
-		}
-        sprite->set_flip_h(velocity.x > 0);
-    } else {
-		if (!sprite->is_playing() || sprite->get_animation() != StringName("idle")) {
-			sprite->play("idle");
-		}
+    if (presenter) {
+        current_speed = presenter->get_speed();
     }
 
-	if (input->is_action_just_pressed("ui_select")) { // Space por defecto en Godot
-    Ref<PackedScene> bullet_scene = ResourceLoader::get_singleton()->load("res://Bullet.tscn");
+    if (input->is_action_pressed("ui_right")) {
+        velocity.x += current_speed;
+    }
+    if (input->is_action_pressed("ui_left")) {
+        velocity.x -= current_speed;
+    }
 
-		if (bullet_scene.is_valid()) {
-			Node2D *bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
+    if (is_on_floor() && input->is_action_just_pressed("ui_up")) {
+        velocity.y = jump_speed;
+    }
 
-			if (bullet_instance) {
-				// Posicionamos la bala en la posición del personaje
-				bullet_instance->set_position(get_position());
+    AnimatedSprite2D* sprite = Object::cast_to<AnimatedSprite2D>(get_node<AnimatedSprite2D>("AnimatedSprite2D"));
+    if (velocity.x != 0) {
+        if (!sprite->is_playing() || sprite->get_animation() != String("walk")) {
+            sprite->play("walk");
+        }
+        sprite->set_flip_h(velocity.x < 0);
+    } else {
+        if (!sprite->is_playing() || sprite->get_animation() != StringName("idle")) {
+            sprite->play("idle");
+        }
+    }
 
-				// Agregamos al árbol de nodos
-				get_parent()->add_child(bullet_instance);
-			}
-		}
-	}
+    if (input->is_action_just_pressed("ui_select")) {
+        Ref<PackedScene> bullet_scene = ResourceLoader::get_singleton()->load("res://Bullet.tscn");
+        if (bullet_scene.is_valid()) {
+            Node2D* bullet_instance = Object::cast_to<Node2D>(bullet_scene->instantiate());
+            if (bullet_instance) {
+                AnimatedSprite2D* sprite = Object::cast_to<AnimatedSprite2D>(get_node<AnimatedSprite2D>("AnimatedSprite2D"));
+                int dir = sprite->is_flipped_h() ? -1 : 1;
+                
+                // Asignar el shooter (this) a la bala
+                BulletView* bullet = Object::cast_to<BulletView>(bullet_instance);
+                if (bullet) {
+                    bullet->set_shooter(this);
+                }
+                
+                bullet_instance->set("direction", dir);
+                bullet_instance->set_position(get_position());
+                get_parent()->add_child(bullet_instance);
+            }
+        }
+    }
 
-	set_velocity(velocity);
-	move_and_slide();
-
-}
+    set_velocity(velocity);
+    move_and_slide();
+}	
 
 void CharacterView::set_amplitude(const double p_amplitude) {
 	amplitude = p_amplitude;
@@ -115,10 +133,41 @@ double CharacterView::get_amplitude() const {
 }
 
 void CharacterView::set_speed(const double p_speed) {
-    presenter.set_speed(p_speed);  // Le pasa la velocidad al model
+    if (presenter) {
+        presenter->set_speed(p_speed);
+    } else {
+        speed = p_speed;
+    }
 }
 
 double CharacterView::get_speed() const {
-    return presenter.get_speed();  // Lee la velocidad del model
+    if (presenter) {
+        return presenter->get_speed();
+    } else {
+        return speed;
+    }
+}
+
+void CharacterView::set_presenter(CharacterPresenter* p) {
+	presenter = p;
+	if (presenter) {
+		initial_health = presenter->get_health();
+		initial_speed = presenter->get_speed();
+	}
+}
+
+bool CharacterView::take_damage(int amount) {
+    UtilityFunctions::print("take_damage called with amount: ", amount);
+    if (!presenter) {
+        UtilityFunctions::print("ERROR: Presenter is null!");
+        return false;
+    }
+    bool result = presenter->take_damage(amount);
+    UtilityFunctions::print("take_damage result: ", result);
+    return result;
+}
+
+void CharacterView::die() {
+	queue_free();
 }
 
