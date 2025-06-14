@@ -1,9 +1,24 @@
-[gd_scene format=3 uid="uid://dgfui3fwnmi47"]
+[gd_scene load_steps=4 format=3 uid="uid://dgfui3fwnmi47"]
+
+[ext_resource type="Texture2D" uid="uid://bcn7gjiw85orb" path="res://Objects Sprites/heart.png" id="1_l2ofb"]
+
+[sub_resource type="GDScript" id="GDScript_l2ofb"]
+script/source = "extends ObjectView
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l2ofb"]
+radius = 20.0
 
 [node name="ObjectView" type="ObjectView"]
+object_type = 1
+script = SubResource("GDScript_l2ofb")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_l2ofb")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_l2ofb")

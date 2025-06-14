@@ -42,13 +42,13 @@ void ObjectView::_ready() {
 
         switch (type) {
             case ObjectType::COIN:
-                texture = ResourceLoader::get_singleton()->load("res://demo/ObjectSprites/coin-gold.png");
+                texture = ResourceLoader::get_singleton()->load("res://Objects Sprites/coin-gold.png");
                 break;
             case ObjectType::HEALTH:
-                texture = ResourceLoader::get_singleton()->load("res://demo/ObjectSprites/heart.png");
+                texture = ResourceLoader::get_singleton()->load("res://Objects Sprites/heart.png");
                 break;
             case ObjectType::POWERUP:
-                texture = ResourceLoader::get_singleton()->load("rres://demo/ObjectSprites/jewel.png");
+                texture = ResourceLoader::get_singleton()->load("res://Objects Sprites/jewel.png");
                 break;
             default:
                 break;
@@ -77,10 +77,17 @@ void ObjectView::_process(double delta) {
 }
 
 void ObjectView::_on_body_entered(Node* body) {
-    CharacterView* player = Object::cast_to<CharacterView>(body);
-    if (player) {
+    CharacterView* character_view = Object::cast_to<CharacterView>(body);
+    if (character_view && presenter) {
+        // Se delega al Presenter del personaje qué hacer con el objeto recolectado
+        CharacterPresenter* character_presenter = character_presenter->get_presenter();
+        if (character_presenter) {
+            character_presenter->collect_object(
+                presenter->get_type(),
+                presenter->get_value()
+            );
+        }
         presenter->collect();
-        // player->add_score(presenter->get_value()); // Ejemplo de interacción
     }
 }
 
