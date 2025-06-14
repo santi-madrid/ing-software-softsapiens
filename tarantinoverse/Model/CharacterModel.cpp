@@ -32,5 +32,5 @@ float CharacterModel::get_speed() const {
 }
 
 int CharacterModel::get_max_health() const {
-    return 100; // O podés usar initial_health si preferís hacerlo variable
+    return 100;
 }

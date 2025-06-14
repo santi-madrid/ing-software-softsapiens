@@ -170,20 +170,11 @@ bool CharacterView::take_damage(int amount) {
     if (!presenter) {
         UtilityFunctions::print("ERROR: Presenter is null!");
         return false;
-    }
-
-    bool result = presenter->take_damage(amount);
-    
-    if (health_bar) {
-        int hp = presenter->get_health();
-        UtilityFunctions::print("Setting health bar to: ", hp);
-        health_bar->set_value(hp);
-    } else {
-        UtilityFunctions::print("health_bar is null!");
-    }
+    } 
+    bool result = presenter->take_damage(amount); // se ejecuta take_damage del modelo y actualiza la vida por el danio recibido. true si la vida es 0 o menos
 
     if (health_bar) {
-        health_bar->set_value(presenter->get_health());
+        health_bar->set_value(presenter->get_health()); // actualiza la barra leyendo la variable health
     }
 
     if (result) { // Si el modelo devuelve true, está muerto
