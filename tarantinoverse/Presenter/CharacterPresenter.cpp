@@ -28,3 +28,7 @@ void CharacterPresenter::set_speed(double p_speed) {
 double CharacterPresenter::get_speed() const {
     return model.get_speed();
 }
+
+int CharacterPresenter::get_max_health() const {
+    return model.get_max_health();
+}

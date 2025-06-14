@@ -5,6 +5,7 @@
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/camera2d.hpp>
 #include "../Presenter/CharacterPresenter.h"
+#include <godot_cpp/classes/texture_progress_bar.hpp> 
 
 namespace godot {
 
@@ -24,6 +25,7 @@ private:
 	float jump_speed = -450.0f;
 	double last_camera_x = 0.0f;
 	godot::Camera2D* camera = nullptr;
+	godot::TextureProgressBar* health_bar = nullptr;
 
 
 protected:
