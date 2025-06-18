@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://77ntg677kifg"]
+[gd_scene load_steps=11 format=3 uid="uid://77ntg677kifg"]
 
 [ext_resource type="Texture2D" uid="uid://b28ta0qakfw8v" path="res://Background Sprites/fondo_trtvrs.png" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://cbgohptg7xfg0" path="res://UI/play_button.png" id="1_glbon"]
 [ext_resource type="Texture2D" uid="uid://dprk1ig5xao6h" path="res://UI/options_button.png" id="2_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://ddpx2bef15yt" path="res://UI/credits_button.png" id="3_qe12f"]
 [ext_resource type="Texture2D" uid="uid://cuoji0ilpkx6g" path="res://UI/quit_button.png" id="4_8qtwp"]
+[ext_resource type="AudioStream" uid="uid://b7m4awk6f4vof" path="res://Sounds/main_menu.mp3" id="6_nlkkf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.980392, 0.784314, 0.0705882, 1)
@@ -99,3 +100,8 @@ icon = ExtResource("4_8qtwp")
 position = Vector2(578, 328)
 scale = Vector2(1.07118, 1.08025)
 texture = ExtResource("1_06t4h")
+
+[node name="main_menu_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_nlkkf")
+autoplay = true
+parameters/looping = false
