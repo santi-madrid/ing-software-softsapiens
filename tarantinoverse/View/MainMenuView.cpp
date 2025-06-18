@@ -14,7 +14,6 @@ class MainMenuPresenter;
 using namespace godot;
 
 void MainMenuView::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("_process", "delta"), &MainMenuView::_process);
     ClassDB::bind_method(D_METHOD("_on_play_pressed"), &MainMenuView::_on_play_pressed);
     ClassDB::bind_method(D_METHOD("_on_options_pressed"), &MainMenuView::_on_options_pressed);
     ClassDB::bind_method(D_METHOD("_on_credits_pressed"), &MainMenuView::_on_credits_pressed);
