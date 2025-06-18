@@ -57,7 +57,7 @@ void OptionsMenuView::_on_play_pressed() {
 
 void OptionsMenuView::_on_quit_pressed() {
     UtilityFunctions::print("Quit button pressed");
-    get_tree()->change_scene_to_file("res://main_Menu.tscn");
+    get_tree()->change_scene_to_file("res://main_menu.tscn");
 }
 
 void OptionsMenuView::set_presenter(OptionsMenuPresenter* p) {

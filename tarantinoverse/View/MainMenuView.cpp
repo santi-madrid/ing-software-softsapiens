@@ -58,7 +58,7 @@ void MainMenuView::_process(double delta) {
 
 void MainMenuView::_on_play_pressed() {
     UtilityFunctions::print("Play button pressed");
-    get_tree()->change_scene_to_file("res://Main.tscn");
+    get_tree()->change_scene_to_file("res://main.tscn");
 }
 
 void MainMenuView::_on_options_pressed() {
@@ -68,7 +68,7 @@ void MainMenuView::_on_options_pressed() {
 
 void MainMenuView::_on_credits_pressed() {
     UtilityFunctions::print("Credits button pressed");
-    get_tree()->change_scene_to_file("res://credits_Menu.tscn");
+    get_tree()->change_scene_to_file("res://credits_menu.tscn");
 }
 
 void MainMenuView::_on_quit_pressed() {
