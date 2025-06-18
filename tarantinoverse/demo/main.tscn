@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=25 format=3 uid="uid://dwrkkalu5egdj"]
 
 [ext_resource type="Texture2D" uid="uid://4kw0lidoq828" path="res://Background Sprites/background_solid_sand.png" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://dsqq0amlv0vqq" path="res://Characters Sprites/aldo_1.png" id="3_1bvp3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2kr32w12l1si" path="res://Background Sprites/frentecine.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dvbwt7jktarv5" path="res://Tiles Sprites/bricks_flame/sprite_brickflame1.png" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://dttkk2b6c56cc" path="res://Characters Sprites/tank.png" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://bcn7gjiw85orb" path="res://Objects Sprites/heart.png" id="8_5vw27"]
 
 [sub_resource type="GDScript" id="GDScript_1bvp3"]
 script/source = "extends Node
@@ -85,6 +86,9 @@ size = Vector2(141.5, 82.5)
 [sub_resource type="CurveTexture" id="CurveTexture_272bh"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_5vw27"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kek77"]
+radius = 42.4264
 
 [node name="Main" type="Node"]
 script = SubResource("GDScript_1bvp3")
@@ -225,11 +229,26 @@ texture = ExtResource("5_272bh")
 [node name="HealthBar" type="TextureProgressBar" parent="UI"]
 offset_left = 39.0
 offset_top = 41.0
-offset_right = 206.0
-offset_bottom = 51.0
+offset_right = 304.0
+offset_bottom = 60.0
 value = 100.0
 nine_patch_stretch = true
 texture_under = SubResource("CurveTexture_272bh")
 texture_progress = SubResource("AnimatedTexture_5vw27")
 tint_under = Color(0.934151, 0.394871, 0.176383, 1)
 tint_progress = Color(0.672755, 0.42981, 0, 1)
+
+[node name="ObjectView" type="ObjectView" parent="."]
+object_type = 1
+position = Vector2(425, 227)
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjectView"]
+position = Vector2(0.499998, 3.99999)
+scale = Vector2(1.98437, 1.71875)
+texture = ExtResource("8_5vw27")
+
+[node name="Hitbox" type="Area2D" parent="ObjectView"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectView/Hitbox"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_kek77")
