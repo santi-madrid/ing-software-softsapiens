@@ -52,12 +52,12 @@ void OptionsMenuView::_process(double delta) {
 
 void OptionsMenuView::_on_play_pressed() {
     UtilityFunctions::print("Play button pressed");
-    get_tree()->change_scene_to_file("res://Main.tscn"); //Cambiar lógica para mutear sonido.
+    get_tree()->change_scene_to_file("res://main.tscn"); //Cambiar lógica para mutear sonido.
 }
 
 void OptionsMenuView::_on_quit_pressed() {
     UtilityFunctions::print("Quit button pressed");
-    get_tree()->change_scene_to_file("res://Main_Menu.tscn");
+    get_tree()->change_scene_to_file("res://main_Menu.tscn");
 }
 
 void OptionsMenuView::set_presenter(OptionsMenuPresenter* p) {

@@ -49,7 +49,7 @@ void CreditsMenuView::_process(double delta) {
 
 void CreditsMenuView::_on_quit_pressed() {
     UtilityFunctions::print("Quit button pressed");
-    get_tree()->change_scene_to_file("res://Main_Menu.tscn");
+    get_tree()->change_scene_to_file("res://main_Menu.tscn");
 }
 
 void CreditsMenuView::set_presenter(CreditsMenuPresenter* p) {
