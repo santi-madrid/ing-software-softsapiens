@@ -79,7 +79,7 @@ void ObjectView::_process(double delta) {
 void ObjectView::_on_body_entered(Node *body) {
   CharacterView *character_view = Object::cast_to<CharacterView>(body);
   if (character_view && presenter) {
-    character_view->collect_object(static_cast<int>(presenter->get_type()),
+    character_view->collect_object(presenter->get_type(),
                                    presenter->get_value());
     presenter->collect();
   }

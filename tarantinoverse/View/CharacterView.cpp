@@ -47,12 +47,12 @@ void CharacterView::_bind_methods() {
 }
 
 CharacterView::CharacterView()
-    : presenter(nullptr), initial_health(100), initial_speed(100.0f),
+    : presenter(nullptr), initial_health(100), initial_score(0), initial_speed(100.0f),
       time_passed(0.0), time_emit(0.0), amplitude(10.0),
       speed(100.0) // Set a default speed instead of using presenter
 {
   if (!presenter) {
-    presenter = new CharacterPresenter(this, initial_health, initial_speed);
+    presenter = new CharacterPresenter(this, initial_health, initial_score, initial_speed);
     UtilityFunctions::print("Presenter created");
   } // Constructor body can remain empty or handle other initialization
 }
@@ -183,6 +183,7 @@ void CharacterView::set_presenter(CharacterPresenter *p) {
   presenter = p;
   if (presenter) {
     initial_health = presenter->get_health();
+    initial_score = presenter->get_score();
     initial_speed = presenter->get_speed();
   }
 }

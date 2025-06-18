@@ -15,6 +15,7 @@ class CharacterView : public CharacterBody2D {
 private:
   CharacterPresenter *presenter;
   int initial_health;
+  int initial_score;
   float initial_speed;
   double time_passed;
   double time_emit;
