@@ -14,7 +14,6 @@ class PauseMenuPresenter;
 using namespace godot;
 
 void PauseMenuView::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("_process", "delta"), &PauseMenuView::_process);
     ClassDB::bind_method(D_METHOD("_on_play_pressed"), &PauseMenuView::_on_play_pressed);
     ClassDB::bind_method(D_METHOD("_on_options_pressed"), &PauseMenuView::_on_options_pressed);
     ClassDB::bind_method(D_METHOD("_on_quit_pressed"), &PauseMenuView::_on_quit_pressed);
