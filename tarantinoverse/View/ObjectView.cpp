@@ -78,7 +78,7 @@ void ObjectView::_process(double delta) {
 
 void ObjectView::_on_body_entered(Node* body) {
     CharacterView* character_view = Object::cast_to<CharacterView>(body);
-    if (character_view && presenter) {
+    /*if (character_view && presenter) {
         // Se delega al Presenter del personaje qué hacer con el objeto recolectado
         CharacterPresenter* character_presenter = character_view->get_presenter();
         if (character_presenter) {
@@ -88,7 +88,7 @@ void ObjectView::_on_body_entered(Node* body) {
             );
         }
         presenter->collect();
-    }
+    }*/
 }
 
 void ObjectView::_bind_methods() {
