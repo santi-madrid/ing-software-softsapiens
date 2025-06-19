@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://4huw7o73fbpx"]
+[gd_scene load_steps=4 format=3 uid="uid://cr5yb1vkvtk2w"]
 
-[ext_resource type="Texture2D" uid="uid://deh4ctq0nq6b3" path="res://UI/landa_openart.png" id="1_y26ei"]
-[ext_resource type="Script" path="res://game_over.gd" id="1_yxx3c"]
+[ext_resource type="Texture2D" uid="uid://cpf1ioykt5551" path="res://UI/landa_openart.png" id="1_y26ei"]
+[ext_resource type="Script" uid="uid://dha48jv8mfv8w" path="res://game_over.gd" id="1_yxx3c"]
+[ext_resource type="AudioStream" uid="uid://cp8nb7lyx6uga" path="res://Sounds/death.mp3" id="3_ccer4"]
 
 [node name="GameOver" type="Node"]
 script = ExtResource("1_yxx3c")
@@ -12,3 +13,7 @@ script = ExtResource("1_yxx3c")
 position = Vector2(583, 323.5)
 scale = Vector2(1.13086, 0.631836)
 texture = ExtResource("1_y26ei")
+
+[node name="game_over_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ccer4")
+autoplay = true
