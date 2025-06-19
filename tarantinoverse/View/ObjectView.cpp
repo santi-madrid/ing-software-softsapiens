@@ -10,7 +10,8 @@
 using namespace godot;
 
 /**
- * @brief Constructor de ObjectView. Inicializa el presenter y el tipo de objeto por defecto.
+ * @brief Constructor de ObjectView. Inicializa el presenter y el tipo de objeto
+ * por defecto.
  */
 ObjectView::ObjectView() {
   presenter = nullptr;
@@ -63,6 +64,10 @@ void ObjectView::_ready() {
       texture = ResourceLoader::get_singleton()->load(
           "res://Objects Sprites/jewel.png");
       break;
+    case ObjectType::WINNINGFLAG:
+      texture = ResourceLoader::get_singleton()->load(
+          "res://Objects Sprites/flag.png"); // Usa tu sprite de bandera
+      break;
     default:
       break;
     }
@@ -95,7 +100,8 @@ void ObjectView::_process(double delta) {
 }
 
 /**
- * @brief Callback cuando un cuerpo entra en el área del objeto. Permite la recolección.
+ * @brief Callback cuando un cuerpo entra en el área del objeto. Permite la
+ * recolección.
  * @param body Nodo que entra en el área.
  */
 void ObjectView::_on_body_entered(Node *body) {
@@ -120,6 +126,6 @@ void ObjectView::_bind_methods() {
                        &ObjectView::get_object_type);
 
   ADD_PROPERTY(PropertyInfo(Variant::INT, "object_type", PROPERTY_HINT_ENUM,
-                            "Coin,Health,PowerUp"),
+                            "Coin,Health,PowerUp,WinningFlag"),
                "set_object_type", "get_object_type");
 }

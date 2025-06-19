@@ -13,7 +13,7 @@
  * defecto.
  */
 EnemyView::EnemyView()
-    : presenter(nullptr), initial_health(100), initial_speed(100.0f) {}
+    : presenter(nullptr), initial_health(100), initial_speed(-100.0f) {}
 
 /**
  * @brief Inicializa la vista del enemigo y crea el presenter si es necesario.
@@ -23,6 +23,17 @@ void EnemyView::_ready() {
   if (!presenter) {
     presenter = new EnemyPresenter(this, initial_health, initial_speed);
     UtilityFunctions::print("Presenter created");
+  }
+
+  // Ajustar flip inicial según la dirección
+  AnimatedSprite2D *sprite = Object::cast_to<AnimatedSprite2D>(
+      get_node<AnimatedSprite2D>("AnimatedSprite2D"));
+  if (sprite) {
+    sprite->set_flip_h(false); // Siempre inicia sin flip
+    if (initial_speed > 0) {
+      sprite->set_flip_h(true);
+    }
+    sprite->play("walk"); // Iniciar animación walk
   }
 }
 
@@ -42,6 +53,9 @@ void EnemyView::_physics_process(double delta) {
   Vector2 velocity = get_velocity();
   velocity.y += gravity * delta;
 
+  // Lógica de movimiento automático en X
+  velocity.x = initial_speed;
+
   set_velocity(velocity);
   move_and_slide();
 
@@ -53,13 +67,22 @@ void EnemyView::_physics_process(double delta) {
 
   // Si el enemigo choca con una pared, se da la vuelta
   if (is_on_wall()) {
-    Sprite2D *sprite =
-        Object::cast_to<Sprite2D>(get_node<Sprite2D>("Sprite2D"));
-    if (sprite) {
-      sprite->set_flip_h(!sprite->is_flipped_h());
+    for (int i = 0; i < get_slide_collision_count(); i++) {
+      Ref<KinematicCollision2D> collision = get_slide_collision(i);
+      if (collision.is_valid()) {
+        Node *collider = Object::cast_to<Node>(collision->get_collider());
+        if (collider && collider->is_in_group("walls")) {
+          AnimatedSprite2D *sprite = Object::cast_to<AnimatedSprite2D>(
+              get_node<AnimatedSprite2D>("AnimatedSprite2D"));
+          if (sprite) {
+            sprite->set_flip_h(!sprite->is_flipped_h());
+            sprite->play("walk"); // Asegura que siga animando walk
+          }
+          initial_speed = -initial_speed;
+          break;
+        }
+      }
     }
-    // Opcional: invertir velocidad si tienes lógica de movimiento automático
-    // initial_speed = -initial_speed;
   }
 
   if (shoot_timer >= shoot_interval) {
@@ -72,8 +95,8 @@ void EnemyView::_physics_process(double delta) {
       Node2D *bullet_instance =
           Object::cast_to<Node2D>(bullet_scene->instantiate());
       if (bullet_instance) {
-        Sprite2D *sprite =
-            Object::cast_to<Sprite2D>(get_node<Sprite2D>("Sprite2D"));
+        AnimatedSprite2D *sprite = Object::cast_to<AnimatedSprite2D>(
+            get_node<AnimatedSprite2D>("AnimatedSprite2D"));
         int dir = sprite->is_flipped_h() ? 1 : -1;
 
         // Asignar el shooter (this) a la bala

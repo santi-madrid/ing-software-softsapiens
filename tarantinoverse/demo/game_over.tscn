@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr5yb1vkvtk2w"]
+[gd_scene load_steps=3 format=3 uid="uid://4huw7o73fbpx"]
 
-[ext_resource type="Texture2D" uid="uid://doprla2ngjhyf" path="res://UI/landa_openart.png" id="1_y26ei"]
-[ext_resource type="Script" uid="uid://dha48jv8mfv8w" path="res://game_over.gd" id="1_yxx3c"]
+[ext_resource type="Texture2D" uid="uid://deh4ctq0nq6b3" path="res://UI/landa_openart.png" id="1_y26ei"]
+[ext_resource type="Script" path="res://game_over.gd" id="1_yxx3c"]
 
 [node name="GameOver" type="Node"]
 script = ExtResource("1_yxx3c")

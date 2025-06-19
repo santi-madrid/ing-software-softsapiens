@@ -233,25 +233,26 @@ bool CharacterView::take_damage(int amount) {
 }
 
 void CharacterView::die() {
-<<<<<<< HEAD
   if (is_dead)
     return;
   is_dead = true;
-  get_tree()->change_scene_to_file("res://main_menu.tscn");
-=======
-    if (is_dead) return;
-    is_dead = true;
-    get_tree()->change_scene_to_file("res://game_over.tscn");
->>>>>>> 139492a7bfe17731da8892f0a7bb4d75c2c89cdd
+  get_tree()->change_scene_to_file("res://game_over.tscn");
 }
 
 void CharacterView::collect_object(ObjectType type, int value) {
   if (presenter) {
     presenter->collect_object(type, value);
+    UtilityFunctions::print("collect_object called with type: ",
+                            (int)ObjectType::WINNINGFLAG);
+    if ((int)type == 3) {
+      UtilityFunctions::print(
+          "[DEBUG] WINNINGFLAG detectado, cambiando de escena...");
+      UtilityFunctions::print("¡Ganaste el nivel!");
+      get_tree()->change_scene_to_file("res://you_win.tscn");
+      return;
+    }
     if (health_bar) {
-      health_bar->set_value(
-          presenter
-              ->get_health()); // actualiza la barra leyendo la variable health
+      health_bar->set_value(presenter->get_health());
     }
   }
 }

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfeu1d8gv7ef8"]
+
+[ext_resource type="Script" uid="uid://d3rfgjwrfakl5" path="res://you_win.gd" id="1_vkac0"]
+[ext_resource type="Texture2D" uid="uid://dgmwyiud76ov5" path="res://UI/aldo you win.png" id="1_w5032"]
+[ext_resource type="Texture2D" uid="uid://du0ej8sq4qejl" path="res://UI/fondonegro.jpg" id="2_rlycu"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_vkac0")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(586.5, 324.75)
+scale = Vector2(0.696289, 0.629394)
+texture = ExtResource("2_rlycu")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sprite2D2"]
+scale = Vector2(1, 1)
+texture = ExtResource("1_w5032")
