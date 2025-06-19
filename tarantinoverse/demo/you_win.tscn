@@ -15,5 +15,4 @@ scale = Vector2(0.696289, 0.629394)
 texture = ExtResource("2_rlycu")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sprite2D2"]
-scale = Vector2(1, 1)
 texture = ExtResource("1_w5032")

@@ -13,7 +13,7 @@
  * defecto.
  */
 EnemyView::EnemyView()
-    : presenter(nullptr), initial_health(100), initial_speed(-100.0f) {}
+    : presenter(nullptr), initial_health(100), initial_speed(-50.0f) {}
 
 /**
  * @brief Inicializa la vista del enemigo y crea el presenter si es necesario.
