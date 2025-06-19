@@ -32,7 +32,7 @@ void ObjectView::_ready() {
   // Crea un Object con Factory Method
   presenter = ObjectPresenter::create(start_pos, type, value);
 
-  Sprite2D *sprite = get_node<Sprite2D>("Sprite");
+  Sprite2D *sprite = get_node<Sprite2D>("Sprite2D");
   if (sprite) {
     Ref<Texture2D> texture;
 
