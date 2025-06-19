@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfeu1d8gv7ef8"]
+[gd_scene load_steps=5 format=3 uid="uid://dfeu1d8gv7ef8"]
 
-[ext_resource type="Script" uid="uid://d3rfgjwrfakl5" path="res://you_win.gd" id="1_vkac0"]
-[ext_resource type="Texture2D" uid="uid://dgmwyiud76ov5" path="res://UI/aldo you win.png" id="1_w5032"]
-[ext_resource type="Texture2D" uid="uid://du0ej8sq4qejl" path="res://UI/fondonegro.jpg" id="2_rlycu"]
+[ext_resource type="Script" path="res://you_win.gd" id="1_vkac0"]
+[ext_resource type="Texture2D" uid="uid://06vgusauil6f" path="res://UI/aldo you win.png" id="1_w5032"]
+[ext_resource type="Texture2D" uid="uid://cudx17sn6oiv7" path="res://UI/fondonegro.jpg" id="2_rlycu"]
+[ext_resource type="AudioStream" uid="uid://ch7rg7p4b5ewt" path="res://Sounds/win.mp3" id="4_20tug"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_vkac0")
@@ -16,3 +17,7 @@ texture = ExtResource("2_rlycu")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sprite2D2"]
 texture = ExtResource("1_w5032")
+
+[node name="win_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_20tug")
+autoplay = true
