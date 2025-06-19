@@ -1,10 +1,12 @@
 #include "BaseMenuPresenter.h"
 #include "BaseMenuModel.h"
 
-BaseMenuPresenter::BaseMenuPresenter()
-    : model() {
-}
+/**
+ * @brief Constructor de BaseMenuPresenter. Inicializa el modelo base del menú.
+ */
+BaseMenuPresenter::BaseMenuPresenter() : model() {}
 
-BaseMenuPresenter::~BaseMenuPresenter(){
-    
-}
+/**
+ * @brief Destructor de BaseMenuPresenter.
+ */
+BaseMenuPresenter::~BaseMenuPresenter() {}

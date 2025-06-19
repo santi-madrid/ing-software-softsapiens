@@ -5,9 +5,15 @@ namespace godot {
 class CharacterView;
 }
 
-#include "Model/CharacterModel.h"
 #include "../Core/ObjectType.h"
+#include "Model/CharacterModel.h"
 
+
+/**
+ * @class CharacterPresenter
+ * @brief Presenter para el personaje principal. Conecta la vista y el modelo
+ * del personaje.
+ */
 class CharacterPresenter {
 public:
   CharacterPresenter(godot::CharacterView *view, int hp, int sp, float speed);

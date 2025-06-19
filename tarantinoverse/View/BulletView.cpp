@@ -6,16 +6,25 @@
 
 using namespace godot;
 
+/**
+ * @brief Constructor de BulletView. Inicializa el presenter y el daño por defecto.
+ */
 BulletView::BulletView() {
     presenter = nullptr;
     damage_power = 25; // Valor por defecto, puede ser modificado según sea necesario
 }
 
+/**
+ * @brief Destructor de BulletView. Libera el presenter si es necesario.
+ */
 BulletView::~BulletView() {
     if (presenter)
         delete presenter;
 }
 
+/**
+ * @brief Inicializa la vista de la bala y conecta la señal de colisión.
+ */
 void BulletView::_ready() {
     //presenter = new BulletPresenter(get_position(), direction);
     Area2D* hitbox = get_node<Area2D>("Hitbox");
@@ -24,6 +33,10 @@ void BulletView::_ready() {
     }
 }
 
+/**
+ * @brief Proceso de lógica de la bala. Actualiza posición y destruye si es necesario.
+ * @param delta Tiempo transcurrido desde el último frame.
+ */
 void BulletView::_process(double delta) {
     if (!presenter)
          presenter = new BulletPresenter(get_position(), direction);
@@ -35,6 +48,10 @@ void BulletView::_process(double delta) {
     }
 }
 
+/**
+ * @brief Callback cuando un cuerpo entra en el área de la bala. Aplica daño y destruye la bala.
+ * @param body Nodo que entra en el área.
+ */
 void BulletView::_on_body_entered(Node* body) {
     // Si el cuerpo golpeado es el mismo que disparó la bala, ignorarlo
     if (body == shooter) {
@@ -61,6 +78,9 @@ void BulletView::_on_body_entered(Node* body) {
     }
 }
 
+/**
+ * @brief Registra los métodos y propiedades de BulletView para Godot.
+ */
 void BulletView::_bind_methods() {
     ClassDB::bind_method(D_METHOD("set_direction", "dir"), &BulletView::set_direction);
     ClassDB::bind_method(D_METHOD("get_direction"), &BulletView::get_direction);

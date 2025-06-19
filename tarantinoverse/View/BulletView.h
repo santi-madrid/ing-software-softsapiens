@@ -6,6 +6,14 @@
 
 using namespace godot;
 
+/**
+ * @class BulletView
+ * @brief Vista de las balas, maneja su presentación y colisiones.
+ *
+ * Gestiona la visualización, dirección y daño de las balas disparadas en el
+ * juego.
+ */
+
 class BulletView : public Node2D {
   GDCLASS(BulletView, Node2D)
 

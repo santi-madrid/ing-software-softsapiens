@@ -9,20 +9,35 @@
 
 using namespace godot;
 
+/**
+ * @brief Constructor de ObjectView. Inicializa el presenter y el tipo de objeto por defecto.
+ */
 ObjectView::ObjectView() {
   presenter = nullptr;
   object_type = static_cast<int>(ObjectType::COIN); // por defecto
 }
 
+/**
+ * @brief Destructor de ObjectView. Libera el presenter si es necesario.
+ */
 ObjectView::~ObjectView() {
   if (presenter)
     delete presenter;
 }
 
+/**
+ * @brief Establece el tipo de objeto (como entero casteado a ObjectType).
+ * @param type Tipo de objeto como int.
+ */
 void ObjectView::set_object_type(int type) { object_type = type; }
-
+/**
+ * @brief Obtiene el tipo de objeto como int.
+ * @return Tipo de objeto.
+ */
 int ObjectView::get_object_type() const { return object_type; }
-
+/**
+ * @brief Inicializa la vista del objeto, crea el presenter y asigna la textura.
+ */
 void ObjectView::_ready() {
   Vector2 start_pos = get_position();
   ObjectType type = static_cast<ObjectType>(object_type);
@@ -66,6 +81,10 @@ void ObjectView::_ready() {
   }
 }
 
+/**
+ * @brief Proceso de lógica del objeto. Libera el nodo si fue recogido.
+ * @param delta Tiempo transcurrido desde el último frame.
+ */
 void ObjectView::_process(double delta) {
   if (!presenter)
     return;
@@ -75,6 +94,10 @@ void ObjectView::_process(double delta) {
   }
 }
 
+/**
+ * @brief Callback cuando un cuerpo entra en el área del objeto. Permite la recolección.
+ * @param body Nodo que entra en el área.
+ */
 void ObjectView::_on_body_entered(Node *body) {
   CharacterView *character_view = Object::cast_to<CharacterView>(body);
   if (character_view && presenter) {
@@ -84,6 +107,9 @@ void ObjectView::_on_body_entered(Node *body) {
   }
 }
 
+/**
+ * @brief Registra los métodos y propiedades de ObjectView para Godot.
+ */
 void ObjectView::_bind_methods() {
   ClassDB::bind_method(D_METHOD("_on_body_entered", "body"),
                        &ObjectView::_on_body_entered);

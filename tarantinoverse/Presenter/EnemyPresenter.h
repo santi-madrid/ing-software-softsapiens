@@ -6,17 +6,21 @@
 // 👇 Forward declaration
 class EnemyView;
 
+/**
+ * @class EnemyPresenter
+ * @brief Presenter para enemigos. Conecta la vista y el modelo del enemigo.
+ */
 class EnemyPresenter {
 private:
-    EnemyModel model;
-    EnemyView* view;
+  EnemyModel model;
+  EnemyView *view;
 
 public:
-    EnemyPresenter(EnemyView* v, int hp, float speed);
+  EnemyPresenter(EnemyView *v, int hp, float speed);
 
-    void on_update(double delta);
-    bool take_damage(int amount);
-    int get_health() const;
+  void on_update(double delta);
+  bool take_damage(int amount);
+  int get_health() const;
 };
 
 #endif // ENEMY_PRESENTER_H

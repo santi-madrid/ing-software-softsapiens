@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=27 format=3 uid="uid://dwrkkalu5egdj"]
 
 [ext_resource type="Texture2D" uid="uid://4kw0lidoq828" path="res://Background Sprites/background_solid_sand.png" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://dsqq0amlv0vqq" path="res://Characters Sprites/aldo_1.png" id="3_1bvp3"]
@@ -8,9 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dvbwt7jktarv5" path="res://Tiles Sprites/bricks_flame/sprite_brickflame1.png" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://dttkk2b6c56cc" path="res://Characters Sprites/tank.png" id="5_272bh"]
 [ext_resource type="Script" uid="uid://gbd4dhdabc1v" path="res://character_view.gd" id="6_4c57u"]
-[ext_resource type="AudioStream" uid="uid://1plhwxdq1qd2" path="res://Sounds/footsteps.mp3" id="7_kek77"]
-[ext_resource type="Texture2D" uid="uid://bcn7gjiw85orb" path="res://Objects Sprites/heart.png" id="8_5vw27"]
-[ext_resource type="AudioStream" uid="uid://blt055fufqsgs" path="res://Sounds/in_game.mp3" id="11_efxa6"]
+[ext_resource type="AudioStream" uid="uid://b2n33d7gdnmbb" path="res://Sounds/footsteps.mp3" id="7_kek77"]
+[ext_resource type="Texture2D" uid="uid://dnycr74ewc6ek" path="res://Objects Sprites/jewel.png" id="10_4c57u"]
 
 [sub_resource type="GDScript" id="GDScript_1bvp3"]
 script/source = "extends Node
@@ -250,7 +249,7 @@ object_type = 2
 position = Vector2(609, 248)
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjectView"]
-texture = ExtResource("8_5vw27")
+texture = ExtResource("10_4c57u")
 
 [node name="Hitbox" type="Area2D" parent="ObjectView"]
 position = Vector2(-64, -23)

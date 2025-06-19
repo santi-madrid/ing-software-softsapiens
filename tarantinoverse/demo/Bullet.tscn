@@ -1,6 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://clw3lys7dpjqt"]
 
 [ext_resource type="Texture2D" uid="uid://dgvagfihw3p1p" path="res://Tiles Sprites/bullets/bullet.png" id="1_ayd6b"]
+[ext_resource type="AudioStream" uid="uid://2_4s4u5" path="res://Sounds/pistola.mp3" id="2_4s4u5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s4u5"]
 size = Vector2(19, 6)

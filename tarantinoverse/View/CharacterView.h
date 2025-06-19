@@ -1,14 +1,24 @@
 #ifndef CHARACTERVIEW_H
 #define CHARACTERVIEW_H
 
-#include "../Presenter/CharacterPresenter.h"
 #include "../Core/ObjectType.h"
+#include "../Presenter/CharacterPresenter.h"
 #include <godot_cpp/classes/camera2d.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/sprite2d.hpp>
 #include <godot_cpp/classes/texture_progress_bar.hpp>
 
+
 namespace godot {
+
+/**
+ * @class CharacterView
+ * @brief Vista del personaje principal, maneja la interacción con Godot y la
+ * presentación visual.
+ *
+ * Esta clase representa la vista del personaje, gestionando la física,
+ * animaciones, y la comunicación con el Presenter.
+ */
 
 class CharacterView : public CharacterBody2D {
   GDCLASS(CharacterView, CharacterBody2D);
@@ -54,7 +64,6 @@ public:
   void collect_object(ObjectType type, int value);
 
   bool is_power_up_active() const;
-
 };
 
 } // namespace godot
