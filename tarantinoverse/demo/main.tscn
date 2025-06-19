@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dvbwt7jktarv5" path="res://Tiles Sprites/bricks_flame/sprite_brickflame1.png" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://dttkk2b6c56cc" path="res://Characters Sprites/tank.png" id="5_272bh"]
 [ext_resource type="Script" uid="uid://gbd4dhdabc1v" path="res://character_view.gd" id="6_4c57u"]
-[ext_resource type="AudioStream" uid="uid://b2n33d7gdnmbb" path="res://Sounds/footsteps.mp3" id="7_kek77"]
+[ext_resource type="AudioStream" uid="uid://q7m2wuqatxdv" path="res://Sounds/footsteps.mp3" id="7_kek77"]
 [ext_resource type="Texture2D" uid="uid://dnycr74ewc6ek" path="res://Objects Sprites/jewel.png" id="10_4c57u"]
 
 [sub_resource type="GDScript" id="GDScript_1bvp3"]
