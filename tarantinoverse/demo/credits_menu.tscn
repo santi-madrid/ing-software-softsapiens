@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b3bjkg3pubb2i" path="res://UI/back_button.png" id="1_tgbea"]
 [ext_resource type="Texture2D" uid="uid://cpr5vnhunowxn" path="res://Background Sprites/CreditsScene.png" id="2_8n0c7"]
-[ext_resource type="AudioStream" uid="uid://d081y6tn6git5" path="res://Sounds/credits.mp3" id="3_8n0c7"]
+[ext_resource type="AudioStream" uid="uid://b8s5tgwfhi0md" path="res://Sounds/credits.mp3" id="3_8n0c7"]
 
 [node name="CreditsMenu" type="CreditsMenuView"]
 

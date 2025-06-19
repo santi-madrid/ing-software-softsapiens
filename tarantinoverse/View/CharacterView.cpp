@@ -233,10 +233,16 @@ bool CharacterView::take_damage(int amount) {
 }
 
 void CharacterView::die() {
+<<<<<<< HEAD
   if (is_dead)
     return;
   is_dead = true;
   get_tree()->change_scene_to_file("res://main_menu.tscn");
+=======
+    if (is_dead) return;
+    is_dead = true;
+    get_tree()->change_scene_to_file("res://game_over.tscn");
+>>>>>>> 139492a7bfe17731da8892f0a7bb4d75c2c89cdd
 }
 
 void CharacterView::collect_object(ObjectType type, int value) {

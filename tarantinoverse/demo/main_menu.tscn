@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dprk1ig5xao6h" path="res://UI/options_button.png" id="2_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://ddpx2bef15yt" path="res://UI/credits_button.png" id="3_qe12f"]
 [ext_resource type="Texture2D" uid="uid://cuoji0ilpkx6g" path="res://UI/quit_button.png" id="4_8qtwp"]
-[ext_resource type="AudioStream" uid="uid://b7m4awk6f4vof" path="res://Sounds/main_menu.mp3" id="6_nlkkf"]
+[ext_resource type="AudioStream" uid="uid://d2yvg0tnohto8" path="res://Sounds/main_menu.mp3" id="6_nlkkf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.980392, 0.784314, 0.0705882, 1)
