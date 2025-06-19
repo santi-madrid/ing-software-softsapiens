@@ -161,7 +161,7 @@ scale = Vector2(0.166233, 0.163628)
 texture = ExtResource("4_272bh")
 
 [node name="CharacterView" type="CharacterView" parent="."]
-speed = 257.7
+speed = 250.0
 position = Vector2(-84, 38)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterView"]
@@ -239,7 +239,7 @@ tint_under = Color(0.934151, 0.394871, 0.176383, 1)
 tint_progress = Color(0.672755, 0.42981, 0, 1)
 
 [node name="ObjectView" type="ObjectView" parent="."]
-object_type = 1
+object_type = 2
 position = Vector2(609, 248)
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjectView"]

@@ -50,7 +50,7 @@ void CharacterView::_bind_methods() {
 CharacterView::CharacterView()
     : presenter(nullptr), initial_health(100), initial_score(0), initial_speed(100.0f),
       time_passed(0.0), time_emit(0.0), amplitude(10.0),
-      speed(100.0) // Set a default speed instead of using presenter
+      speed(250.0) // Set a default speed instead of using presenter
 {
   if (!presenter) {
     presenter = new CharacterPresenter(this, initial_health, initial_score, initial_speed);
@@ -145,6 +145,12 @@ void CharacterView::_physics_process(double p_delta) {
         BulletView *bullet = Object::cast_to<BulletView>(bullet_instance);
         if (bullet) {
           bullet->set_shooter(this);
+
+          // Chequear si el power-up está activo y setear el power
+          int base_power = bullet->get_power_damage();
+          if (is_power_up_active()) {
+            bullet->set_power_damage(base_power + 25);
+          }
         }
 
         bullet_instance->set("direction", dir);
@@ -153,15 +159,17 @@ void CharacterView::_physics_process(double p_delta) {
       }
     }
   }
-
-  set_velocity(velocity);
-  move_and_slide();
-
-  // Llamada al presenter para que actualice la duración del power-up
+    
+  
+    set_velocity(velocity);
+    move_and_slide();
+  
+    // Llamada al presenter para que actualice la duración del power-up
     if (presenter) {
-        presenter->update(static_cast<float>(p_delta));
+      presenter->update(static_cast<float>(p_delta));
     }
-}
+  
+  }
 
 void CharacterView::set_amplitude(const double p_amplitude) {
   amplitude = p_amplitude;
