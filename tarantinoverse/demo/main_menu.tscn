@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dprk1ig5xao6h" path="res://UI/options_button.png" id="2_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://ddpx2bef15yt" path="res://UI/credits_button.png" id="3_qe12f"]
 [ext_resource type="Texture2D" uid="uid://cuoji0ilpkx6g" path="res://UI/quit_button.png" id="4_8qtwp"]
-[ext_resource type="AudioStream" uid="uid://d2yvg0tnohto8" path="res://Sounds/main_menu.mp3" id="6_nlkkf"]
+[ext_resource type="AudioStream" uid="uid://cryer58rrufaj" path="res://Sounds/main_menu.mp3" id="6_nlkkf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.980392, 0.784314, 0.0705882, 1)
@@ -44,6 +44,7 @@ shadow_color = Color(0.890196, 0.0235294, 0.0745098, 1)
 shadow_size = 10
 
 [node name="MainMenuView" type="MainMenuView"]
+physics_interpolation_mode = 0
 anchors_preset = -1
 anchor_right = 0.078
 anchor_bottom = 0.207
@@ -53,8 +54,7 @@ offset_right = 387.144
 offset_bottom = 97.864
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
+layout_mode = 0
 offset_left = -131.0
 offset_top = -114.0
 offset_right = 375.0

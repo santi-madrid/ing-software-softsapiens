@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dvbwt7jktarv5" path="res://Tiles Sprites/bricks_flame/sprite_brickflame1.png" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://dttkk2b6c56cc" path="res://Characters Sprites/tank.png" id="5_272bh"]
 [ext_resource type="Script" uid="uid://gbd4dhdabc1v" path="res://character_view.gd" id="6_4c57u"]
-[ext_resource type="AudioStream" uid="uid://q7m2wuqatxdv" path="res://Sounds/footsteps.mp3" id="7_kek77"]
+[ext_resource type="AudioStream" uid="uid://cx8xw0gjyaqvf" path="res://Sounds/footsteps.mp3" id="7_kek77"]
 [ext_resource type="Texture2D" uid="uid://dnycr74ewc6ek" path="res://Objects Sprites/jewel.png" id="10_4c57u"]
-[ext_resource type="AudioStream" uid="uid://blt055fufqsgs" path="res://Sounds/in_game.mp3" id="11_efxa6"]
+[ext_resource type="AudioStream" uid="uid://cnumu48xbgb6q" path="res://Sounds/in_game.mp3" id="11_efxa6"]
 
 [sub_resource type="GDScript" id="GDScript_1bvp3"]
 script/source = "extends Node
@@ -262,3 +262,5 @@ shape = SubResource("RectangleShape2D_4c57u")
 [node name="in_game_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_efxa6")
 autoplay = true
+
+[connection signal="frame_changed" from="CharacterView/AnimatedSprite2D" to="CharacterView" method="_on_animated_sprite_2d_frame_changed"]
