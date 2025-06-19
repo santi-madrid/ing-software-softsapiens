@@ -3,6 +3,7 @@
 
 #include <godot_cpp/classes/node2d.hpp>
 #include "Presenter/ObjectPresenter.h"
+#include "../Core/ObjectType.h"
 
 using namespace godot;
 

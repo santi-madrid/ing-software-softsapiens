@@ -2,6 +2,7 @@
 #include "BulletView.h"
 #include "PauseMenuView.h"
 #include "Presenter/CharacterPresenter.h"
+
 #include <godot_cpp/classes/animated_sprite2d.hpp>
 #include <godot_cpp/classes/camera2d.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
@@ -222,7 +223,7 @@ void CharacterView::die() {
   get_tree()->change_scene_to_file("res://main_menu.tscn");
 }
 
-void CharacterView::collect_object(int type, int value) {
+void CharacterView::collect_object(ObjectType type, int value) {
   if (presenter) {
     presenter->collect_object(type, value);
     if (health_bar) {
@@ -234,8 +235,10 @@ void CharacterView::collect_object(int type, int value) {
 }
 
 bool CharacterView::is_power_up_active() const {
-  if(!presenter) {
+  if(presenter) {
     return presenter->is_power_up_active();
+  } else {
+    return false;
   }
 }
 

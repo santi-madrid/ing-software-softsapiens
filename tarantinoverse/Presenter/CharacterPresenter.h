@@ -6,6 +6,7 @@ class CharacterView;
 }
 
 #include "Model/CharacterModel.h"
+#include "../Core/ObjectType.h"
 
 class CharacterPresenter {
 public:
@@ -18,7 +19,7 @@ public:
   void set_speed(double p_speed);
   double get_speed() const;
   int get_max_health() const;
-  void collect_object(int type, int value);
+  void collect_object(ObjectType type, int value);
   void activate_power_up(float duration);
   bool is_power_up_active() const;
   void update(float delta);

@@ -1,5 +1,8 @@
 // Model/CharacterModel.h
 #pragma once
+
+#include "../Core/ObjectType.h"
+
 class CharacterModel {
 private:
     float speed;

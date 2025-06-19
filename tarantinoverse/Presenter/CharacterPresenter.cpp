@@ -2,7 +2,6 @@
 #include "CharacterPresenter.h"
 #include "../View/CharacterView.h"
 #include "CharacterModel.h"
-#include "../Core/ObjectType.h"
 
 // Interfaz
 class ObjectEffectStrategy {
@@ -98,8 +97,8 @@ void CharacterPresenter::update(float delta) {
         if (power_up_time_left <= 0.0f) {
             power_up_active = false;
             power_up_time_left = 0.0f;
-            model->set_speed(100.0f);
-            model->set_max_health(100);
+            model.set_speed(100.0f);
+            model.set_max_health(100);
         }
     }
 }
