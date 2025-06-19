@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dwrkkalu5egdj"]
+[gd_scene load_steps=25 format=3 uid="uid://dwrkkalu5egdj"]
 
 [ext_resource type="Texture2D" uid="uid://4kw0lidoq828" path="res://Background Sprites/background_solid_sand.png" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://dsqq0amlv0vqq" path="res://Characters Sprites/aldo_1.png" id="3_1bvp3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2kr32w12l1si" path="res://Background Sprites/frentecine.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dvbwt7jktarv5" path="res://Tiles Sprites/bricks_flame/sprite_brickflame1.png" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://dttkk2b6c56cc" path="res://Characters Sprites/tank.png" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://bcn7gjiw85orb" path="res://Objects Sprites/heart.png" id="8_5vw27"]
 
 [sub_resource type="GDScript" id="GDScript_1bvp3"]
 script/source = "extends Node
@@ -242,10 +243,11 @@ object_type = 1
 position = Vector2(609, 248)
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjectView"]
+texture = ExtResource("8_5vw27")
 
 [node name="Hitbox" type="Area2D" parent="ObjectView"]
-position = Vector2(5, -2)
+position = Vector2(-64, -23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectView/Hitbox"]
-position = Vector2(-169, 16.5)
+position = Vector2(61, 22)
 shape = SubResource("RectangleShape2D_4c57u")

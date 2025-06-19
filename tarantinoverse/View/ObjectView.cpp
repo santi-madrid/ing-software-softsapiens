@@ -1,7 +1,6 @@
 // ObjectView.cpp
 #include "ObjectView.h"
 #include "View/CharacterView.h"
-
 #include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/sprite2d.hpp>
