@@ -14,7 +14,6 @@ class OptionsMenuPresenter;
 using namespace godot;
 
 void OptionsMenuView::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("_process", "delta"), &OptionsMenuView::_process);
     ClassDB::bind_method(D_METHOD("_on_play_pressed"), &OptionsMenuView::_on_play_pressed);
     ClassDB::bind_method(D_METHOD("_on_quit_pressed"), &OptionsMenuView::_on_quit_pressed);
 }

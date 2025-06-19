@@ -49,7 +49,7 @@ void CharacterView::_bind_methods() {
 CharacterView::CharacterView()
     : presenter(nullptr), initial_health(100), initial_speed(100.0f),
       time_passed(0.0), time_emit(0.0), amplitude(10.0),
-      speed(100.0) // Set a default speed instead of using presenter
+      speed(100.0), is_dead(false) // Set a default speed instead of using presenter
 {
   if (!presenter) {
     presenter = new CharacterPresenter(this, initial_health, initial_speed);
@@ -212,17 +212,18 @@ bool CharacterView::take_damage(int amount) {
 }
 
 void CharacterView::die() {
-  queue_free();
-  get_tree()->change_scene_to_file("res://main_menu.tscn");
+    if (is_dead) return;
+    is_dead = true;
+    get_tree()->change_scene_to_file("res://main_menu.tscn");
 }
 
 void CharacterView::collect_object(int type, int value) {
   if (presenter) {
     presenter->collect_object(type, value);
     if (health_bar) {
-    health_bar->set_value(
-        presenter
-            ->get_health()); // actualiza la barra leyendo la variable health
+      health_bar->set_value(
+          presenter
+              ->get_health()); // actualiza la barra leyendo la variable health
     }
   }
 }
