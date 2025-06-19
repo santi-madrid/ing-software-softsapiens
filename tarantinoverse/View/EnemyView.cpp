@@ -8,7 +8,6 @@
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/sprite2d.hpp>
 
-
 /**
  * @brief Constructor de EnemyView. Inicializa el presenter y variables por
  * defecto.
@@ -45,6 +44,23 @@ void EnemyView::_physics_process(double delta) {
 
   set_velocity(velocity);
   move_and_slide();
+
+  // Si el enemigo cae por debajo del piso (por ejemplo, y > 2000), muere
+  if (get_global_position().y > 2000) {
+    die();
+    return;
+  }
+
+  // Si el enemigo choca con una pared, se da la vuelta
+  if (is_on_wall()) {
+    Sprite2D *sprite =
+        Object::cast_to<Sprite2D>(get_node<Sprite2D>("Sprite2D"));
+    if (sprite) {
+      sprite->set_flip_h(!sprite->is_flipped_h());
+    }
+    // Opcional: invertir velocidad si tienes lógica de movimiento automático
+    // initial_speed = -initial_speed;
+  }
 
   if (shoot_timer >= shoot_interval) {
     shoot_timer = 0.0f;

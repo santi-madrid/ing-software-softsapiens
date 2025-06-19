@@ -48,12 +48,14 @@ void CharacterView::_bind_methods() {
 }
 
 CharacterView::CharacterView()
-    : presenter(nullptr), initial_health(100), initial_score(0), initial_speed(100.0f),
-      time_passed(0.0), time_emit(0.0), amplitude(10.0),
-      speed(250.0), is_dead(false) // Set a default speed instead of using presenter
+    : presenter(nullptr), initial_health(100), initial_score(0),
+      initial_speed(100.0f), time_passed(0.0), time_emit(0.0), amplitude(10.0),
+      speed(250.0),
+      is_dead(false) // Set a default speed instead of using presenter
 {
   if (!presenter) {
-    presenter = new CharacterPresenter(this, initial_health, initial_score, initial_speed);
+    presenter = new CharacterPresenter(this, initial_health, initial_score,
+                                       initial_speed);
     UtilityFunctions::print("Presenter created");
   } // Constructor body can remain empty or handle other initialization
 }
@@ -159,17 +161,21 @@ void CharacterView::_physics_process(double p_delta) {
       }
     }
   }
-    
-  
-    set_velocity(velocity);
-    move_and_slide();
-  
-    // Llamada al presenter para que actualice la duración del power-up
-    if (presenter) {
-      presenter->update(static_cast<float>(p_delta));
-    }
-  
+
+  set_velocity(velocity);
+  move_and_slide();
+
+  // Si el personaje cae por debajo del piso (por ejemplo, y > 2000), muere
+  if (get_global_position().y > 2000) {
+    die();
+    return;
   }
+
+  // Llamada al presenter para que actualice la duración del power-up
+  if (presenter) {
+    presenter->update(static_cast<float>(p_delta));
+  }
+}
 
 void CharacterView::set_amplitude(const double p_amplitude) {
   amplitude = p_amplitude;
@@ -227,9 +233,10 @@ bool CharacterView::take_damage(int amount) {
 }
 
 void CharacterView::die() {
-    if (is_dead) return;
-    is_dead = true;
-    get_tree()->change_scene_to_file("res://main_menu.tscn");
+  if (is_dead)
+    return;
+  is_dead = true;
+  get_tree()->change_scene_to_file("res://main_menu.tscn");
 }
 
 void CharacterView::collect_object(ObjectType type, int value) {
@@ -244,10 +251,9 @@ void CharacterView::collect_object(ObjectType type, int value) {
 }
 
 bool CharacterView::is_power_up_active() const {
-  if(presenter) {
+  if (presenter) {
     return presenter->is_power_up_active();
   } else {
     return false;
   }
 }
-
