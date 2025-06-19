@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Model/ObjectModel.h"
+#include "../Core/ObjectType.h"
 
 class ObjectPresenter {
 private:

@@ -2,6 +2,7 @@
 #define CHARACTERVIEW_H
 
 #include "../Presenter/CharacterPresenter.h"
+#include "../Core/ObjectType.h"
 #include <godot_cpp/classes/camera2d.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/sprite2d.hpp>
@@ -15,6 +16,7 @@ class CharacterView : public CharacterBody2D {
 private:
   CharacterPresenter *presenter;
   int initial_health;
+  int initial_score;
   float initial_speed;
   double time_passed;
   double time_emit;
@@ -49,7 +51,10 @@ public:
 
   void die();
 
-  void collect_object(int type, int value);
+  void collect_object(ObjectType type, int value);
+
+  bool is_power_up_active() const;
+
 };
 
 } // namespace godot

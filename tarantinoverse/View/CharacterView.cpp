@@ -2,6 +2,7 @@
 #include "BulletView.h"
 #include "PauseMenuView.h"
 #include "Presenter/CharacterPresenter.h"
+
 #include <godot_cpp/classes/animated_sprite2d.hpp>
 #include <godot_cpp/classes/camera2d.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
@@ -47,12 +48,12 @@ void CharacterView::_bind_methods() {
 }
 
 CharacterView::CharacterView()
-    : presenter(nullptr), initial_health(100), initial_speed(100.0f),
+    : presenter(nullptr), initial_health(100), initial_score(0), initial_speed(100.0f),
       time_passed(0.0), time_emit(0.0), amplitude(10.0),
-      speed(100.0), is_dead(false) // Set a default speed instead of using presenter
+      speed(250.0), is_dead(false) // Set a default speed instead of using presenter
 {
   if (!presenter) {
-    presenter = new CharacterPresenter(this, initial_health, initial_speed);
+    presenter = new CharacterPresenter(this, initial_health, initial_score, initial_speed);
     UtilityFunctions::print("Presenter created");
   } // Constructor body can remain empty or handle other initialization
 }
@@ -144,6 +145,12 @@ void CharacterView::_physics_process(double p_delta) {
         BulletView *bullet = Object::cast_to<BulletView>(bullet_instance);
         if (bullet) {
           bullet->set_shooter(this);
+
+          // Chequear si el power-up está activo y setear el power
+          int base_power = bullet->get_power_damage();
+          if (is_power_up_active()) {
+            bullet->set_power_damage(base_power + 25);
+          }
         }
 
         bullet_instance->set("direction", dir);
@@ -152,10 +159,17 @@ void CharacterView::_physics_process(double p_delta) {
       }
     }
   }
-
-  set_velocity(velocity);
-  move_and_slide();
-}
+    
+  
+    set_velocity(velocity);
+    move_and_slide();
+  
+    // Llamada al presenter para que actualice la duración del power-up
+    if (presenter) {
+      presenter->update(static_cast<float>(p_delta));
+    }
+  
+  }
 
 void CharacterView::set_amplitude(const double p_amplitude) {
   amplitude = p_amplitude;
@@ -183,6 +197,7 @@ void CharacterView::set_presenter(CharacterPresenter *p) {
   presenter = p;
   if (presenter) {
     initial_health = presenter->get_health();
+    initial_score = presenter->get_score();
     initial_speed = presenter->get_speed();
   }
 }
@@ -217,7 +232,7 @@ void CharacterView::die() {
     get_tree()->change_scene_to_file("res://main_menu.tscn");
 }
 
-void CharacterView::collect_object(int type, int value) {
+void CharacterView::collect_object(ObjectType type, int value) {
   if (presenter) {
     presenter->collect_object(type, value);
     if (health_bar) {
@@ -227,3 +242,12 @@ void CharacterView::collect_object(int type, int value) {
     }
   }
 }
+
+bool CharacterView::is_power_up_active() const {
+  if(presenter) {
+    return presenter->is_power_up_active();
+  } else {
+    return false;
+  }
+}
+
