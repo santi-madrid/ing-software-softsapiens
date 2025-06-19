@@ -2,13 +2,7 @@
 #pragma once
 
 #include <godot_cpp/variant/vector2.hpp>
-
-enum class ObjectType {
-    COIN,
-    HEALTH,
-    POWERUP,
-    CUSTOM
-};
+#include "../Core/ObjectType.h"
 
 class ObjectModel {
 private:
