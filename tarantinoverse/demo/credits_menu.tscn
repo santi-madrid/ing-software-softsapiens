@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://16nmtrcigiru"]
+[gd_scene load_steps=4 format=3 uid="uid://16nmtrcigiru"]
 
 [ext_resource type="Texture2D" uid="uid://b3bjkg3pubb2i" path="res://UI/back_button.png" id="1_tgbea"]
 [ext_resource type="Texture2D" uid="uid://cpr5vnhunowxn" path="res://Background Sprites/CreditsScene.png" id="2_8n0c7"]
+[ext_resource type="AudioStream" uid="uid://d081y6tn6git5" path="res://Sounds/credits.mp3" id="3_8n0c7"]
 
 [node name="CreditsMenu" type="CreditsMenuView"]
 
@@ -21,3 +22,7 @@ icon = ExtResource("1_tgbea")
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
 position = Vector2(412, 226)
 texture = ExtResource("2_8n0c7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8n0c7")
+autoplay = true

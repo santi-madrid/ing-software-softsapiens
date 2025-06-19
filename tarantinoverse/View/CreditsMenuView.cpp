@@ -14,7 +14,6 @@ class CreditsMenuPresenter;
 using namespace godot;
 
 void CreditsMenuView::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("_process", "delta"), &CreditsMenuView::_process);
     ClassDB::bind_method(D_METHOD("_on_quit_pressed"), &CreditsMenuView::_on_quit_pressed);
 }
 

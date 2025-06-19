@@ -28,6 +28,7 @@ private:
   double last_camera_x = 0.0f;
   godot::Camera2D *camera = nullptr;
   godot::TextureProgressBar *health_bar = nullptr;
+  bool is_dead = false;
 
 protected:
   static void _bind_methods();
