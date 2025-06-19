@@ -1,4 +1,7 @@
 {
     "cmake.sourceDirectory": "C:/Users/Mateo/Desktop/Facultad/ing-software-softsapiens/tarantinoverse/godot-cpp",
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "new": "cpp"
+    }
 }

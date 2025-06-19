@@ -3,6 +3,7 @@
 
 CharacterModel::CharacterModel(int initial_health, int initial_score, float movement_speed) {
     health = initial_health;
+    max_health = 100;
     score = initial_score;
     speed = movement_speed;
 }
@@ -40,6 +41,11 @@ float CharacterModel::get_speed() const {
     return speed;
 }
 
+void CharacterModel::set_max_health(int p_max_health)
+{
+    max_health = p_max_health;
+}
+
 int CharacterModel::get_max_health() const {
-    return 100;
+    return max_health;
 }

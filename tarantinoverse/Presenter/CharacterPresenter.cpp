@@ -1,6 +1,8 @@
+// Presenter/CharacterPresenter.cpp
 #include "CharacterPresenter.h"
 #include "../View/CharacterView.h"
 #include "CharacterModel.h"
+#include "../Core/ObjectType.h"
 
 // Interfaz
 class ObjectEffectStrategy {
@@ -28,6 +30,7 @@ class PowerUpEffect : public ObjectEffectStrategy {
 public:
     void apply(CharacterModel* model, int value) override {
         model->set_speed(model->get_speed() + value);
+        model->set_max_health(model->get_max_health() + value);
     }
 };
 
@@ -58,8 +61,8 @@ int CharacterPresenter::get_max_health() const {
 }
 
 void CharacterPresenter::collect_object(ObjectType type, int value) {
-  ObjectEffectStrategy* strategy = nullptr;
-  switch (type) {
+    ObjectEffectStrategy* strategy = nullptr;
+    switch (type) {
         case ObjectType::COIN:
             strategy = new CoinEffect();
             break;
@@ -68,12 +71,35 @@ void CharacterPresenter::collect_object(ObjectType type, int value) {
             break;
         case ObjectType::POWERUP:
             strategy = new PowerUpEffect();
+            activate_power_up(POWER_UP_DURATION);
             break;
         default:
             return;
-  }
-  if (strategy) {
-      strategy->apply(model, value);
-      delete strategy;
-  }
+    }
+
+    if (strategy) {
+        strategy->apply(&model, value);
+        delete strategy;
+    }
+}
+
+void CharacterPresenter::activate_power_up(float duration) {
+    power_up_active = true;
+    power_up_time_left = duration;
+}
+
+bool CharacterPresenter::is_power_up_active() const {
+    return power_up_active;
+}
+
+void CharacterPresenter::update(float delta) {
+    if (power_up_active) {
+        power_up_time_left -= delta;
+        if (power_up_time_left <= 0.0f) {
+            power_up_active = false;
+            power_up_time_left = 0.0f;
+            model->set_speed(100.0f);
+            model->set_max_health(100);
+        }
+    }
 }

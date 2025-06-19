@@ -41,19 +41,21 @@ void BulletView::_on_body_entered(Node* body) {
         return;
     }
 
-    EnemyView* enemy = Object::cast_to<EnemyView>(body);
-    if (enemy) {
-        bool enemy_died = enemy->take_damage(damage_power); // Pasamos el daño de la bala **ERROR**
-        if (enemy_died) {
-            enemy->die(); // Solo llamamos a die() si la vida llegó a 0
-        }
-        queue_free(); // Destruir la bala de todas formas
-    }
     CharacterView* character = Object::cast_to<CharacterView>(body);
     if (character) {
         bool character_died = character->take_damage(damage_power); // Pasamos el daño de la bala
         if (character_died) {
             character->die(); // Solo llamamos a die() si la vida llegó a 0
+        }
+        queue_free(); // Destruir la bala de todas formas
+    }
+
+    EnemyView* enemy = Object::cast_to<EnemyView>(body);
+    if (enemy) {
+        bool power_up = character && character->is_power_up_active(); // Verificamos si el power_up está activo
+        bool enemy_died = enemy->take_damage(power_up ? damage_power * 2 : damage_power); // Pasamos el daño de la bala de acuerdo a si el power_up esta activo o no
+        if (enemy_died) {
+            enemy->die(); // Solo llamamos a die() si la vida llegó a 0
         }
         queue_free(); // Destruir la bala de todas formas
     }

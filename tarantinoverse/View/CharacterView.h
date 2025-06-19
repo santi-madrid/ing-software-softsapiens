@@ -50,6 +50,9 @@ public:
   void die();
 
   void collect_object(int type, int value);
+
+  bool is_power_up_active() const;
+
 };
 
 } // namespace godot

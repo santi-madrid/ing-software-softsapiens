@@ -4,6 +4,7 @@ class CharacterModel {
 private:
     float speed;
     int health;
+    int max_health;
     int score;
 public:
     CharacterModel(int initial_health, int initial_score, float movement_speed);
@@ -16,6 +17,6 @@ public:
     bool is_dead() const;
     float get_speed() const;
     void set_speed(float s);
-
+    void set_max_health(int p_max_health);
     int get_max_health() const;
 };

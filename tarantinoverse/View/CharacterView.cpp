@@ -155,6 +155,11 @@ void CharacterView::_physics_process(double p_delta) {
 
   set_velocity(velocity);
   move_and_slide();
+
+  // Llamada al presenter para que actualice la duración del power-up
+    if (presenter) {
+        presenter->update(static_cast<float>(p_delta));
+    }
 }
 
 void CharacterView::set_amplitude(const double p_amplitude) {
@@ -227,3 +232,10 @@ void CharacterView::collect_object(int type, int value) {
     }
   }
 }
+
+bool CharacterView::is_power_up_active() const {
+  if(!presenter) {
+    return presenter->is_power_up_active();
+  }
+}
+
