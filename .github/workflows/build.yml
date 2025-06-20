@@ -34,3 +34,28 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      - name: Compile godot-cpp
+        run: |
+          python -m pip install scons
+          cd tarantinoverse
+          cd godot-cpp
+          scons
+          cd ..
+          scons
+          echo Project compiled!
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: sudo apt update && sudo apt install -y doctest 
+
+    - name: Run unit tests
+      run: |
+        cd tarantinoverse
+        ./run_tests

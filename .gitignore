@@ -1,23 +1,35 @@
-# Ignorar ejecutables en bin, pero no archivos .gdextension
-/bin/*
-!/bin/*.gdextension
+# === GODOT ===
+.import/
+export.cfg
+export_presets.cfg
+*.godot/
+*.import
+*.tmp
 
-# Ignorar objetos y binarios generales
-*.o
-*.os
-*.a
+# === GDExtension / SCons ===
+build/
+bin/
 *.so
-*.exe
 *.dll
-*.out
-
-# Ignorar archivos temporales o intermedios
-/build/
-*.import/
-*.translation/
-*.converted/
-
-# Ignorar archivos de SCons
+*.dylib
+*.exe
 .sconsign.dblite
-/.sconsign.dblite
+.sconsign.*
+*.o
+*.obj
+*.a
+*.lib
 
+# === VSCode ===
+.vscode/
+*.code-workspace
+
+# === CLion / JetBrains ===
+.idea/
+cmake-build-*/
+
+# === OS Files ===
+.DS_Store
+Thumbs.db
+desktop.ini
+tarantinoverse/.sconsign.dblite
