@@ -1,0 +1,24 @@
+name: CI - Run Unit Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: sudo apt update && sudo apt install -y doctest scons
+
+    - name: Build tests with scons
+      run: scons run_tests
+
+    - name: Run unit tests
+      run: ./run_tests
