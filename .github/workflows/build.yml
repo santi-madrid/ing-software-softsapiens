@@ -55,8 +55,5 @@ jobs:
     - name: Install dependencies
       run: sudo apt update && sudo apt install -y doctest 
 
-    - name: Build tests with scons
-      run: scons run_tests
-
     - name: Run unit tests
       run: ./run_tests
